@@ -1,5 +1,5 @@
 {
-  "name": "joojang.front.backoffice",
+  "name": "joojang.front.admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,0 +1,6 @@
+export enum ActionType {
+    // Root Data
+    GET_ROOTDATA_REQUEST = 'root/GET_ROOTDATA_REQUEST ',
+    GET_ROOTDATA_SUCCESS = 'root/GET_ROOTDATA_SUCCESS',
+    GET_ROOTDATA_ERROR = 'root/GET_ROOTDATA_ERROR',
+}

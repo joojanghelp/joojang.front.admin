@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { connectRouter, RouterState } from 'connected-react-router'
 import { History } from 'history'
 import { all } from 'redux-saga/effects';
-import sitedatas, { SiteDataState, getSiteDataSaga } from './sitedatas';
+import sitedatas, { SiteDataState } from './sitedatas';
 
 import logins ,{ LoginState } from './logins';
 import loginActionSaga from './logins/sagas';

@@ -1,4 +1,4 @@
-import React, {FormEvent, MouseEvent, ChangeEvent} from 'react';
+import React, {MouseEvent, ChangeEvent} from 'react';
 
 interface LoginFormProps  {
     inputEmail: string;

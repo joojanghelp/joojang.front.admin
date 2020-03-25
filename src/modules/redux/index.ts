@@ -19,7 +19,7 @@ export default rootReducer;
 export function* rootSaga() {
     yield all(
         [
-            getSiteDataSaga(),
+            // getSiteDataSaga(),
         ]
     );
 }

@@ -1,4 +1,4 @@
-import { apiResponseInterface } from 'modules/Interfaces';
+import {ServerResponseInterface} from 'modules/ServerResponseInterface';
 
 import axios ,{
     AxiosInstance,
@@ -18,7 +18,7 @@ class GlobalAxios {
             timeout: 20000,
             headers: {
                 "Access-Control-Allow-Origin": "*",
-                "Request-Client-Type": "A02001",
+                "Request-Client-Type": "A01001",
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization" : "Bearer " + cookieManager.get("login_access_token"),
@@ -41,6 +41,7 @@ class GlobalAxios {
                 .catch(error => {
                     if (error.response) {
                         const errorMessage = error.response.data.error_message;
+                        // console.debug(errorMessage);
 
                         if(typeof errorMessage === 'object') {
                             // console.debug(errorMessage.toString());
@@ -70,20 +71,20 @@ class GlobalAxios {
         throw new Error(message);
     };
 
-    init = (method : string, url: string, params: object): Promise<apiResponseInterface> => {
+    init = (method : string, url: string, params: object): Promise<ServerResponseInterface> => {
 
         switch(method) {
             case 'get': {
-                return this.promise<apiResponseInterface>(this.axiosinstance.get(url, params));
+                return this.promise<ServerResponseInterface>(this.axiosinstance.get(url, params));
             }
             case 'post': {
-                return this.promise<apiResponseInterface>(this.axiosinstance.post(url, params));
+                return this.promise<ServerResponseInterface>(this.axiosinstance.post(url, params));
             }
             case 'put': {
-                return this.promise<apiResponseInterface>(this.axiosinstance.put(url, params));
+                return this.promise<ServerResponseInterface>(this.axiosinstance.put(url, params));
             }
             case 'delete': {
-                return this.promise<apiResponseInterface>(this.axiosinstance.put(url, params));
+                return this.promise<ServerResponseInterface>(this.axiosinstance.put(url, params));
             }
             default:
                 return this.error("Should never get here");

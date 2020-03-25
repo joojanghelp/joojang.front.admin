@@ -1,13 +1,16 @@
-import React, {FormEvent, MouseEvent, ChangeEvent} from 'react';
+import React, {MouseEvent, ChangeEvent} from 'react';
 
 interface LoginFormProps  {
+    inputEmail: string;
+    inputPassword: string;
+    handelRememberme: boolean;
     handleChangeEmail: ( email: string ) => void;
     handleChangePassword: ( password: string ) => void;
     handleClickLoginLink: ( event: MouseEvent ) => void;
     handleRememberMeCheckbox: ( event: ChangeEvent<HTMLInputElement> ) => void;
 };
 
-function LoginForm({handleChangeEmail, handleChangePassword, handleClickLoginLink, handleRememberMeCheckbox}: LoginFormProps ) {
+function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEmail, handleChangePassword, handleClickLoginLink, handleRememberMeCheckbox}: LoginFormProps ) {
     return (
         <>
             <form className="user">
@@ -18,6 +21,7 @@ function LoginForm({handleChangeEmail, handleChangePassword, handleClickLoginLin
                         id="exampleInputEmail"
                         aria-describedby="emailHelp"
                         placeholder="이메일을 입력해 주세요...."
+                        value={inputEmail}
                         onChange={ e => handleChangeEmail(e.target.value) }
                     />
                 </div>
@@ -26,7 +30,8 @@ function LoginForm({handleChangeEmail, handleChangePassword, handleClickLoginLin
                         type="password"
                         className="form-control form-control-user"
                         id="exampleInputPassword"
-                        placeholder="Password"
+                        placeholder="비밀번호를 입력해 주세요..."
+                        value={inputPassword}
                         onChange={ e => handleChangePassword(e.target.value) }
                     />
                 </div>
@@ -36,6 +41,7 @@ function LoginForm({handleChangeEmail, handleChangePassword, handleClickLoginLin
                             type="checkbox"
                             className="custom-control-input"
                             id="customCheck"
+                            checked={handelRememberme}
                             onChange={ e => handleRememberMeCheckbox(e)}
                         />
                         <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>

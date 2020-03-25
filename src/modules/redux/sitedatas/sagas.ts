@@ -12,10 +12,10 @@ export function* getSiteDataSaga() {
     }
 };
 
-function* onLoginRequestWatcher() {
+function* onSiteDataRequestWatcher() {
     yield takeLatest(ActionType.GET_ROOTDATA_REQUEST as any, getSiteDataSaga);
 }
 
 export default [
-    fork(onLoginRequestWatcher),
+    fork(onSiteDataRequestWatcher),
 ];

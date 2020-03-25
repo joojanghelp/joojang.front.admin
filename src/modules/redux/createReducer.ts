@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { ActionType } from "./ActionType";
+import { ActionType } from "modules/ActionType";
 
 export type Action<T> = {
     type: ActionType;

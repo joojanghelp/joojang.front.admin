@@ -1,10 +1,10 @@
 import React from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import {
     TestPage,
     LoginPage,
-} from "components/pages";
+} from 'components/pages';
 
 interface RootProps  {
     Routerhistory: any

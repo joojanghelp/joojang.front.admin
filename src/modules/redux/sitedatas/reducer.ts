@@ -1,7 +1,7 @@
 import { SiteDataState } from './types';
 import { ActionType } from 'modules/ActionType';
 import { createReducer } from "typesafe-actions";
-import { sitedataSagaResponseType } from 'modules/types';
+import { reduxStateInterface } from 'modules/Interfaces';
 
 export type Action<T> = {
     type: ActionType;
@@ -12,29 +12,26 @@ export type Action<T> = {
  * 사이트 기본 리듀서 이니셜 데이터
  */
 const initialState: SiteDataState = {
-    state: 'yet',
-    code_list: [],
+    state: 'idle',
 }
 
 /**
  * 사이트 기본 정보 리듀셔
  */
-export const getSiteDataReducer = createReducer<sitedataSagaResponseType>(initialState, {
-   [ActionType.GET_ROOTDATA_REQUEST](state: sitedataSagaResponseType){
+export const getSiteDataReducer = createReducer<reduxStateInterface>(initialState, {
+   [ActionType.GET_ROOTDATA_REQUEST](state: reduxStateInterface){
        return {
            ...state,
-           state: 'yet',
-           code_list: []
+           state: 'loading',
        };
    },
-   [ActionType.GET_ROOTDATA_SUCCESS](state: sitedataSagaResponseType,  action: Action<sitedataSagaResponseType>){
+   [ActionType.GET_ROOTDATA_SUCCESS](state: reduxStateInterface,  action: Action<reduxStateInterface>){
         return {
             ...state,
             state: 'success',
-            code_list: action.payload.code_list,
         };
     },
-    [ActionType.GET_ROOTDATA_ERROR](state: sitedataSagaResponseType, action: Action<sitedataSagaResponseType>) {
+    [ActionType.GET_ROOTDATA_ERROR](state: reduxStateInterface, action: Action<reduxStateInterface>) {
         return {
             ...state,
             state: 'failure'

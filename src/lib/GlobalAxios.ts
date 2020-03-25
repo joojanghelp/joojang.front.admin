@@ -1,13 +1,13 @@
+import { apiResponseInterface } from 'modules/Interfaces';
+
 import axios ,{
     AxiosInstance,
     AxiosPromise
 } from 'axios';
-import { getCookie } from "lib/Helper";
 
-import { APIResponseType } from 'modules/types';
+import { cookieManager } from 'lib/Helper';
 
-
-class GlobalService {
+class GlobalAxios {
 
     axiosinstance: AxiosInstance;
 
@@ -21,7 +21,7 @@ class GlobalService {
                 "Request-Client-Type": "A02001",
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization" : "Bearer " + getCookie("login_access_token"),
+                "Authorization" : "Bearer " + cookieManager.get("login_access_token"),
 
             }
         });
@@ -70,20 +70,20 @@ class GlobalService {
         throw new Error(message);
     };
 
-    init = (method : string, url: string, params: object): Promise<APIResponseType> => {
+    init = (method : string, url: string, params: object): Promise<apiResponseInterface> => {
 
         switch(method) {
             case 'get': {
-                return this.promise<APIResponseType>(this.axiosinstance.get(url, params));
+                return this.promise<apiResponseInterface>(this.axiosinstance.get(url, params));
             }
             case 'post': {
-                return this.promise<APIResponseType>(this.axiosinstance.post(url, params));
+                return this.promise<apiResponseInterface>(this.axiosinstance.post(url, params));
             }
             case 'put': {
-                return this.promise<APIResponseType>(this.axiosinstance.put(url, params));
+                return this.promise<apiResponseInterface>(this.axiosinstance.put(url, params));
             }
             case 'delete': {
-                return this.promise<APIResponseType>(this.axiosinstance.put(url, params));
+                return this.promise<apiResponseInterface>(this.axiosinstance.put(url, params));
             }
             default:
                 return this.error("Should never get here");
@@ -92,4 +92,4 @@ class GlobalService {
     };
 };
 
-export default new GlobalService();
+export default new GlobalAxios();

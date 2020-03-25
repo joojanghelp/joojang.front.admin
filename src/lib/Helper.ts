@@ -37,51 +37,37 @@ export const storageManager = {
     }
 };
 
-// 쿠키삭제.
-export function removeCookie(cname: string): void
-{
-	let expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC;"
-	document.cookie = cname + "=;" + expires + ";path=/";
-}
+/**
+ * 쿠키정보.
+ */
+export const cookieManager = {
+    set: (cname: string, cvalue: string, hours: number = 1) => {
+        let d = new Date();
+        d.setTime(d.getTime() + hours * 60 * 60 * 1000); // (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+    get: (cname: string) => {
 
-// 쿠키저장.
-export function setCookie(cname: string, cvalue: string, hours: number = 1): void
-{
-	let d = new Date();
-	d.setTime(d.getTime() + hours * 60 * 60 * 1000); // (exdays * 24 * 60 * 60 * 1000));
-	let expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+        let name = cname + "=";
+        let ca = document.cookie.split(";");
 
-// 쿠키정보 읽어 오기.
-export function getCookie(cname: string): string | null
-{
-	let name = cname + "=";
-	let ca = document.cookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === " ") {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
 
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) === " ") {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-
-	return "";
-}
-
-// 로그인 정보 쿠키에 저장.
-export function setLoginCookie(payload: any): void
-{
-    setCookie("login_state", "true");
-    setCookie("login_expires_in", payload.expires_in);
-    setCookie("login_access_token", payload.access_token);
-    setCookie("login_refresh_token", payload.refresh_token);
-    setCookie("login_user_name", payload.user_name);
-    setCookie("login_profile_active", payload.profile_active);
-    setCookie("login_profile_image_url", payload.profile_image_url);
+        return "";
+    },
+    remove: (cname: string) => {
+        let expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+        document.cookie = cname + "=;" + expires + ";path=/";
+    }
 }
 
 export const isEmpty = function(value: any): boolean

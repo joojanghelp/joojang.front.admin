@@ -6,6 +6,9 @@ import configureStore from 'modules/configureStore'
 
 import Root from './routes/Root';
 
+import "assets/css/sb-admin-2.css";
+
+
 const history = createBrowserHistory();
 
 declare var window: any;

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
     ListSkeletonComponent,
-    DefaultTable,
 } from 'components/elements';
 
 function ListTable() {

@@ -5,7 +5,6 @@ import {
     TestPage,
     LoginPage,
     UsersPage,
-    DefaultPage,
     BlankPage
 } from 'components/pages';
 

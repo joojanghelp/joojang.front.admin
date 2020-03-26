@@ -4,6 +4,8 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import {
     TestPage,
     LoginPage,
+    UsersPage,
+    BlankPage
 } from 'components/pages';
 
 interface RootProps  {
@@ -17,8 +19,13 @@ const Root = ({
     return (
         <Router history={ Routerhistory }>
             <Switch>
-                <Route path="/" exact={ true } component={ LoginPage } />
+                <Route path="/" exact={ true } component={ UsersPage } />
+                <Route path="/blank" exact={ true } component={ BlankPage } />
+
+
                 <Route path="/login" exact={ true } component={ LoginPage } />
+
+                <Route path="/users" exact={ true } component={ UsersPage } />
 
                 <Route path="/test" exact={ true } component={ TestPage } />
                 <Redirect path="*" to="/login" />

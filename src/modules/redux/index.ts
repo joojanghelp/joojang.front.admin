@@ -7,16 +7,21 @@ import sitedatas, { SiteDataState } from './sitedatas';
 import logins ,{ LoginState } from './logins';
 import loginActionSaga from './logins/sagas';
 
+import pages ,{ PageState } from './pages';
+import PageActionSaga from './pages/sagas';
+
 export interface RootState {
     router: RouterState,
     sitedata: SiteDataState,
     login_state: LoginState
+    pages_state: PageState
 }
 
 const rootReducer = (history: History) => combineReducers({
     router: connectRouter(history),
     sitedata: sitedatas,
     login_state: logins,
+    pages_state: pages,
 });
 
 export default rootReducer;
@@ -25,7 +30,8 @@ export function* rootSaga() {
     yield all(
         [
             // getSiteDataSaga(),
-            ...loginActionSaga
+            ...loginActionSaga,
+            ...PageActionSaga
         ]
     );
 }

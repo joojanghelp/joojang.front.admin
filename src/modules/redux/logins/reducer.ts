@@ -35,11 +35,17 @@ export const loginActionReducer = createReducer<loginStateInterface>(initialStat
         };
     },
     [ActionType.LOGIN_DATA_ERROR](state: loginStateInterface, action: Action<ServerResponseInterface>) {
-        console.debug(action.payload);
         return {
             ...state,
             state: 'failure',
             message: action.payload.message
+        };
+    },
+    [ActionType.LOGIN_DATA_RESET](state: loginStateInterface) {
+        return {
+            ...state,
+            state: 'idle',
+            data: {}
         };
     }
 });

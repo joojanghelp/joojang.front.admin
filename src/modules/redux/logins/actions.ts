@@ -7,3 +7,9 @@ export const attemptLoginAction = (payload: loginRequestInterface) => {
         payload
     }
 }
+
+export const attemptLoginResetAction = () => {
+    return {
+        type: ActionType.LOGIN_DATA_RESET,
+    }
+}

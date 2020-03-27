@@ -13,7 +13,7 @@ export const DEBUG = (e: object) => {
 export const storageManager = {
     set: (key: string, object: any) => {
         if(!localStorage) return;
-        localStorage[key] = (typeof object) === 'string' ? object : JSON.stringify(object);
+        localStorage.setItem(key, (typeof object) === 'string' ? object : JSON.stringify(object) );
     },
     get: (key: string) => {
         if(!localStorage) return null;
@@ -23,9 +23,9 @@ export const storageManager = {
         }
 
         try {
-            return JSON.parse(localStorage[key]);
+            return JSON.parse(localStorage.getItem(key)!);
         } catch(e) {
-            return localStorage[key];
+            return localStorage.getItem(key);
         }
     },
     remove: (key: string) => {
@@ -37,11 +37,42 @@ export const storageManager = {
     }
 };
 
+export function getAccessToken() {
+    return cookieManager.get('login_access_token');
+}
+
+export function getRefreshToken() {
+    return cookieManager.get('login_refresh_token');
+}
+
+export function setLoginInfo(payload: any): void {
+    cookieManager.set('login_token_type', payload.token_type!);
+    cookieManager.set('login_expires_in', payload.expires_in!);
+    cookieManager.set('login_access_token', payload.access_token!);
+    cookieManager.set('login_refresh_token', payload.refresh_token!);
+    cookieManager.set('login_user_name', payload.user_name!);
+}
+
+export function setLoginInfoRefresh(payload: any): void {
+    cookieManager.set('login_token_type', payload.token_type!);
+    cookieManager.set('login_expires_in', payload.expires_in!);
+    cookieManager.set('login_access_token', payload.access_token!);
+    cookieManager.set('login_refresh_token', payload.refresh_token!);
+}
+
+export function removeLoginInfo(): void {
+    cookieManager.remove('login_token_type');
+    cookieManager.remove('login_expires_in');
+    cookieManager.remove('login_access_token');
+    cookieManager.remove('login_refresh_token');
+    cookieManager.remove('login_user_name');
+}
+
 /**
  * 쿠키정보.
  */
 export const cookieManager = {
-    set: (cname: string, cvalue: string, hours: number = 1) => {
+    set: (cname: string, cvalue: string | number, hours: number = 1) => {
         let d = new Date();
         d.setTime(d.getTime() + hours * 60 * 60 * 1000); // (exdays * 24 * 60 * 60 * 1000));
         let expires = "expires=" + d.toUTCString();

@@ -6,6 +6,8 @@ import GlobalAlert from 'lib/GlobalAlert';
 import {
     LoadingSpinner
 } from 'components/elements';
+import * as Helper from 'lib/Helper';
+import history from 'routes/History';
 
 function LoginPage() {
     document.body.classList.add("bg-gradient-primary");
@@ -36,6 +38,12 @@ function LoginPage() {
         }
 
     }, [loginState])
+
+    useEffect(() => {
+        if(Helper.getAccessToken()) {
+            history.push('/');
+        }
+    });
 
     return (
         <>

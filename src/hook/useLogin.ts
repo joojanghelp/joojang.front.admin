@@ -1,9 +1,9 @@
 import { MouseEvent, ChangeEvent,  useState, useEffect, useMemo } from 'react';
 import { loginRequestInterface } from 'modules/Interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { attemptLoginAction } from 'modules/redux/logins';
+import { attemptLoginAction, attemptLoginResetAction } from 'modules/redux/logins';
 import { RootState } from 'modules/redux';
-import { cookieManager } from 'lib/Helper';
+import { cookieManager, setLoginInfo } from 'lib/Helper';
 
 export default function useLogin() {
 
@@ -36,7 +36,6 @@ export default function useLogin() {
     }
 
     const __handleRememberMeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-        // console.debug(typeof e.target.checked);
         if(e.target.checked) {
             setRememberme(true);
         } else {
@@ -62,6 +61,23 @@ export default function useLogin() {
             setRememberme(true);
         }
     }, [])
+
+    useEffect(() => {
+        if(loginState.state === 'success') {
+            new Promise(function(resolve, reject) {
+                setLoginInfo({
+                    token_type: loginState.data!.token_type!,
+                    expires_in: loginState.data!.expires_in!,
+                    access_token: loginState.data!.access_token!,
+                    refresh_token: loginState.data!.refresh_token!,
+                    user_name: loginState.data!.user_name!,
+                });
+                dispatch(attemptLoginResetAction());
+            }).then((e) => {
+                console.debug(e);
+            });
+        }
+    })
 
     return {
         inputEmail,

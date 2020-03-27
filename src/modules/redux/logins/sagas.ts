@@ -10,13 +10,11 @@ export function* loginActionSaga({ payload }: { payload: loginRequestInterface }
     } else {
         yield put({ type: ActionType.LOGIN_DATA_ERROR, payload: response});
     }
-
 }
 
 function* onLoginRequestWatcher() {
     yield takeLatest(ActionType.LOGIN_DATA_REQUEST as any, loginActionSaga);
 }
-
 
 export default [
     fork(onLoginRequestWatcher),

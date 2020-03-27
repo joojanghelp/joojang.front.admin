@@ -1,8 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
     ListSkeletonComponent,
 } from 'components/elements';
+
+import { attemptGetUserListAction } from 'modules/redux/pages';
+
+function UsersPage() {
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(attemptGetUserListAction(1));
+    })
+
+    return (
+        <>
+            <ListSkeletonComponent
+                ListTable={ <ListTable/> }
+            />
+        </>
+    );
+}
+
+export default UsersPage;
+
 
 function ListTable() {
     return (
@@ -56,15 +80,3 @@ function ListTable() {
         </>
     );
 }
-
-function UsersPage() {
-    return (
-        <>
-            <ListSkeletonComponent
-                ListTable={ <ListTable/> }
-            />
-        </>
-    );
-}
-
-export default UsersPage;

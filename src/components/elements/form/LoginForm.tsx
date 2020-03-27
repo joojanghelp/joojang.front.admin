@@ -47,7 +47,7 @@ function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEma
                         <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
                     </div>
                 </div>
-                <a href="{null}"
+                <a href="null"
                     className="btn btn-primary btn-user btn-block"
                     onClick={(e: MouseEvent) => handleClickLoginLink(e)}
                 >Login</a>

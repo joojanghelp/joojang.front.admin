@@ -9,6 +9,10 @@ export interface loginRequestInterface {
     password: string;
 }
 
+export interface getUserListRequestInterface {
+    pageNumber: number;
+}
+
 export interface loginStateInterface {
     state: baseSagaStateType;
     data?: {
@@ -21,6 +25,16 @@ export interface loginStateInterface {
     message?: string;
 }
 
+export interface pageStateInterface {
+    users?: {
+        user_list?: {
+            state?: baseSagaStateType;
+            data?: {
+                list: []
+            }
+        }
+    }
+}
 
 export interface reduxStateInterface {
     state: baseSagaStateType
@@ -29,3 +43,4 @@ export interface reduxStateInterface {
 export interface apiResponseInterface {
     state?: boolean;
 };
+

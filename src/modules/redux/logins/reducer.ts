@@ -1,8 +1,8 @@
 import { ActionType } from 'modules/ActionType';
 import { createReducer } from "typesafe-actions";
 import { LoginState } from './types';
-import { loginStateInterface } from 'modules/Interfaces';
-import { ServerResponseInterface } from 'modules/ServerResponseInterface';
+import { defaultServerResponse, loginState } from 'modules/Interfaces';
+
 
 type Action<T> = {
     type: ActionType;
@@ -14,14 +14,14 @@ const initialState: LoginState = {
     data: {}
 }
 
-export const loginActionReducer = createReducer<loginStateInterface>(initialState, {
-    [ActionType.LOGIN_DATA_REQUEST](state: loginStateInterface) {
+export const loginActionReducer = createReducer<loginState>(initialState, {
+    [ActionType.LOGIN_DATA_REQUEST](state: loginState) {
         return {
             ...state,
             state: 'loading',
         };
     },
-    [ActionType.LOGIN_DATA_SUCCESS](state: loginStateInterface, action: Action<ServerResponseInterface>) {
+    [ActionType.LOGIN_DATA_SUCCESS](state: loginState, action: Action<defaultServerResponse>) {
         return {
             ...state,
             state: 'success',
@@ -34,14 +34,14 @@ export const loginActionReducer = createReducer<loginStateInterface>(initialStat
             }
         };
     },
-    [ActionType.LOGIN_DATA_ERROR](state: loginStateInterface, action: Action<ServerResponseInterface>) {
+    [ActionType.LOGIN_DATA_ERROR](state: loginState, action: Action<defaultServerResponse>) {
         return {
             ...state,
             state: 'failure',
             message: action.payload.message
         };
     },
-    [ActionType.LOGIN_DATA_RESET](state: loginStateInterface) {
+    [ActionType.LOGIN_DATA_RESET](state: loginState) {
         return {
             ...state,
             state: 'idle',

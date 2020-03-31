@@ -3,6 +3,7 @@ import { connectRouter, RouterState } from 'connected-react-router'
 import { History } from 'history'
 import { all } from 'redux-saga/effects';
 import sitedatas, { SiteDataState } from './sitedatas';
+import  SitedatasSaga from './sitedatas/sagas';
 
 import logins ,{ LoginState } from './logins';
 import loginActionSaga from './logins/sagas';
@@ -30,6 +31,7 @@ export function* rootSaga() {
     yield all(
         [
             // getSiteDataSaga(),
+            ...SitedatasSaga,
             ...loginActionSaga,
             ...PageActionSaga
         ]

@@ -1,5 +1,5 @@
 import { MouseEvent, ChangeEvent,  useState, useEffect, useMemo } from 'react';
-import { loginRequestInterface } from 'modules/Interfaces';
+import { loginRequest } from 'modules/Interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { attemptLoginAction, attemptLoginResetAction } from 'modules/redux/logins';
 import { RootState } from 'modules/redux';
@@ -28,7 +28,7 @@ export default function useLogin() {
         if(rememberme) {
             cookieManager.set('rememberme', inputEmail);
         }
-        const dataObject: loginRequestInterface = {
+        const dataObject: loginRequest = {
             email: inputEmail,
             password: inputPassword
         }
@@ -42,17 +42,7 @@ export default function useLogin() {
             setRememberme(false);
             cookieManager.remove('rememberme');
         }
-
-
     }
-
-    // const handleLoginInfoReset = () => {
-    //     setInputPassword('');
-    // }
-
-    useEffect(() => {
-
-    }, [inputEmail, inputPassword])
 
 
     useEffect(() => {

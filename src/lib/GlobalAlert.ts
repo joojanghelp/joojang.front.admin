@@ -5,7 +5,8 @@ import history from 'routes/History';
 
 interface alertTypeInterface {
     title?: string,
-    text: string | null | undefined,
+    text?: string | null | undefined,
+    html?: string | null | undefined,
     footer?: string,
     push_router?: string,
 }
@@ -46,6 +47,17 @@ class GlobalAlert {
             window.location.reload();
         });
     };
+
+    defaultUserInfo = (alertOption: alertTypeInterface): void => {
+        this.SwalAlert.fire({
+            title: alertOption.title,
+            html: alertOption.html,
+            cancelButtonText:
+              '<i class="fa fa-thumbs-down"></i>',
+            cancelButtonAriaLabel: 'Thumbs down'
+        });
+    };
+
 
     error = (alertOption: alertTypeInterface): void => {
         this.SwalAlert.fire({

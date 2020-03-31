@@ -2,7 +2,6 @@ import { put, takeLatest, fork, call } from "redux-saga/effects";
 import { getSiteData } from 'lib/API';
 import { ActionType } from 'modules/ActionType';
 
-
 export function* getSiteDataSaga() {
     const response = yield call(getSiteData);
     if(response.state === true) {

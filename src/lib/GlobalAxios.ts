@@ -1,4 +1,4 @@
-import {ServerResponseInterface} from 'modules/ServerResponseInterface';
+import { defaultServerResponse } from 'modules/Interfaces';
 import history from 'routes/History';
 
 import axios ,{
@@ -65,7 +65,6 @@ class GlobalAxios {
 
                     const errorMessage = error.response.data.error_message;
                     if(typeof errorMessage === 'object') {
-                        console.debug(1);
                         // console.debug(errorMessage.toString());
                         // 어떻게 할것 인지?
                     } else {
@@ -76,13 +75,11 @@ class GlobalAxios {
                         });
                     }
                 } else if (error.request) {
-                    console.debug(3);
                     resolve({
                         status: 444,
-                        message: "The request was made but no response was received"
+                        message: "서버와의 통신중 문제가 발생했습니다."
                     });
                 } else {
-                    console.debug(4);
                     resolve({
                         status: 417,
                         message: "알수 없는 에러 입니다."
@@ -99,7 +96,6 @@ class GlobalAxios {
     refresh_token = async () => this.defaultAxiosinstance.post('/api/v1/auth/refresh_token', {
             refresh_token: Helper.getRefreshToken()
         }).then(response => {
-
             Helper.setLoginInfoRefresh(response.data);
             this.user_access_token = response.data.access_token;
             return {
@@ -118,7 +114,7 @@ class GlobalAxios {
         });
 
 
-    init = async (auth: boolean, method : string, url: string, params: object): Promise<ServerResponseInterface> => {
+    init = async (auth: boolean, method : string, url: string, params: object): Promise<defaultServerResponse> => {
 
         if(auth) {
             const refresh_token = await this.refresh_token();
@@ -132,7 +128,6 @@ class GlobalAxios {
                 // Helper.setLoginInfoRefresh(refresh_token.data)
             }
         }
-
 
         const axiosinstance: AxiosInstance = axios.create({
             baseURL: process.env.REACT_APP_API_URL,
@@ -148,16 +143,16 @@ class GlobalAxios {
 
         switch(method) {
             case 'get': {
-                return this.promise<ServerResponseInterface>(axiosinstance.get(url, params));
+                return this.promise<defaultServerResponse>(axiosinstance.get(url, params));
             }
             case 'post': {
-                return this.promise<ServerResponseInterface>(axiosinstance.post(url, params));
+                return this.promise<defaultServerResponse>(axiosinstance.post(url, params));
             }
             case 'put': {
-                return this.promise<ServerResponseInterface>(axiosinstance.put(url, params));
+                return this.promise<defaultServerResponse>(axiosinstance.put(url, params));
             }
             case 'delete': {
-                return this.promise<ServerResponseInterface>(axiosinstance.delete(url, params));
+                return this.promise<defaultServerResponse>(axiosinstance.delete(url, params));
             }
             default:
                 return this.error("Should never get here");

@@ -1,7 +1,7 @@
 import { ActionType } from 'modules/ActionType';
-import { loginRequestInterface} from 'modules/Interfaces';
+import { loginRequest } from 'modules/Interfaces';
 
-export const attemptLoginAction = (payload: loginRequestInterface) => {
+export const attemptLoginAction = (payload: loginRequest) => {
     return {
         type: ActionType.LOGIN_DATA_REQUEST,
         payload

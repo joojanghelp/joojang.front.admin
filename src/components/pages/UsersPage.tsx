@@ -1,82 +1,112 @@
 import React, {useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-
 import {
     ListSkeletonComponent,
+    DefaultUserListTable
 } from 'components/elements';
-
-import { attemptGetUserListAction } from 'modules/redux/pages';
+import useUserPage from 'hook/useUserPage';
+import GlobalAlert from 'lib/GlobalAlert';
 
 function UsersPage() {
 
-    const dispatch = useDispatch();
+    const {
+        userListItems,
+        userInfoData,
+        __handleClickUserInfoLink,
+        __handleClickUserInfoPage
+    } = useUserPage();
 
+    useEffect(() =>{
 
-    useEffect(() => {
-        dispatch(attemptGetUserListAction(1));
-    })
+        if(userInfoData) {
+            GlobalAlert.defaultUserInfo({
+                title: `<strong><u>${userInfoData.user_name}</u> 상용자 정보.</strong>`,
+
+                html:   `
+                <table class="table table-bordered"width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>정보</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>user_uuid</td>
+                      <td>${userInfoData.user_uuid}</td>
+                    </tr>
+                    <tr>
+                      <td>이름</td>
+                      <td>${userInfoData.user_name}</td>
+                    </tr>
+                    <tr>
+                      <td>이메일</td>
+                      <td>${userInfoData.user_email}</td>
+                    </tr>
+                    <tr>
+                      <td>가입경로</td>
+                      <td>${userInfoData.user_type}</td>
+                    </tr>
+                    <tr>
+                      <td>사용자 상태</td>
+                      <td>${userInfoData.user_state}</td>
+                    </tr>
+                    <tr>
+                      <td>사용자 레벨</td>
+                      <td>${userInfoData.user_level}</td>
+                    </tr>
+                    <tr>
+                      <td>활동 공개 여부</td>
+                      <td>${userInfoData.user_activity_state}</td>
+                    </tr>
+                    <tr>
+                      <td>독서 활동 등록수</td>
+                      <td>${userInfoData.activity_count}</td>
+                    </tr>
+                    <tr>
+                      <td>읽은 책수</td>
+                      <td>${userInfoData.read_book_count}</td>
+                    </tr>
+                    <tr>
+                      <td>업로드 책 수</td>
+                      <td>${userInfoData.upload_book_count}</td>
+                    </tr>
+                    <tr>
+                      <td>가입일</td>
+                      <td>${userInfoData.created_at_string}</td>
+                    </tr>
+                    <tr>
+                      <td>수정일</td>
+                      <td>${userInfoData.updated_at_string}</td>
+                    </tr>
+                    <tr>
+                      <td>이메일 인증일</td>
+                      <td>${userInfoData.email_verified_at_string}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                `
+            });
+        }
+    },[userInfoData])
+
+    useEffect(() =>{
+        // console.debug(state_user_list);
+    },[userListItems])
 
     return (
         <>
             <ListSkeletonComponent
-                ListTable={ <ListTable/> }
+                ListTable={
+                    <DefaultUserListTable
+                        items={userListItems}
+                        handleUserInfoLink={__handleClickUserInfoLink}
+                        handleUserInfoPageLink={__handleClickUserInfoPage}
+                    />
+                }
             />
         </>
     );
 }
 
 export default UsersPage;
-
-
-function ListTable() {
-    return (
-        <>
-            {/* <!-- Begin table --> */}
-            {/* <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0"> */}
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>이메일</th>
-                        <th>이름</th>
-                        <th>가입형태</th>
-                        <th>상태</th>
-                        <th>등급</th>
-                        <th>올린책</th>
-                        <th>활동수</th>
-                        <th>가입일</th>
-                        <th>중지</th>
-                        <th>탈퇴</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>이메일</th>
-                        <th>이름</th>
-                        <th>가입형태</th>
-                        <th>상태</th>
-                        <th>등급</th>
-                        <th>올린책</th>
-                        <th>활동수</th>
-                        <th>가입일</th>
-                        <th>중지</th>
-                        <th>탈퇴</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <tr>
-                        <td>sm.park@healthmax.co.kr</td>
-                        <td>sm.park</td>
-                        <td>안드로이드</td>
-                        <td>정상</td>
-                        <td>일반회원</td>
-                        <td>10</td>
-                        <td>3</td>
-                        <td>2020/03/26</td>
-                        <th>중지</th>
-                        <th>삭제</th>
-                    </tr>
-                </tbody>
-            </table>
-        </>
-    );
-}

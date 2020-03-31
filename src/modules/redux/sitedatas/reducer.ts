@@ -1,7 +1,7 @@
 import { SiteDataState } from './types';
 import { ActionType } from 'modules/ActionType';
 import { createReducer } from "typesafe-actions";
-import { reduxStateInterface } from 'modules/Interfaces';
+import { siteBaseDataResponse } from 'modules/Interfaces';
 
 export type Action<T> = {
     type: ActionType;
@@ -13,25 +13,27 @@ export type Action<T> = {
  */
 const initialState: SiteDataState = {
     state: 'idle',
+    code_list: [],
 }
 
 /**
  * 사이트 기본 정보 리듀셔
  */
-export const getSiteDataReducer = createReducer<reduxStateInterface>(initialState, {
-   [ActionType.GET_ROOTDATA_REQUEST](state: reduxStateInterface){
+export const getSiteDataReducer = createReducer<SiteDataState>(initialState, {
+   [ActionType.GET_ROOTDATA_REQUEST](state: SiteDataState){
        return {
            ...state,
            state: 'loading',
        };
    },
-   [ActionType.GET_ROOTDATA_SUCCESS](state: reduxStateInterface,  action: Action<reduxStateInterface>){
+   [ActionType.GET_ROOTDATA_SUCCESS](state: SiteDataState,  action: Action<siteBaseDataResponse>){
         return {
             ...state,
             state: 'success',
+            code_list: action.payload.items.code_list
         };
     },
-    [ActionType.GET_ROOTDATA_ERROR](state: reduxStateInterface, action: Action<reduxStateInterface>) {
+    [ActionType.GET_ROOTDATA_ERROR](state: SiteDataState, action: Action<siteBaseDataResponse>) {
         return {
             ...state,
             state: 'failure'

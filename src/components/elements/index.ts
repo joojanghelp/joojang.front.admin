@@ -11,6 +11,7 @@ export { default as DefaultUserListTable } from './table/DefaultUserListTable';
 export { default as Sidebar } from './common/Sidebar';
 export { default as Topbar } from './common/Topbar';
 export { default as Footer } from './common/Footer';
+export { default as Pagination } from './common/Pagination';
 
 export { default as ListSkeletonComponent } from './ListSkeletonComponent';
 export { default as InfoSkeletonComponent } from './InfoSkeletonComponent';

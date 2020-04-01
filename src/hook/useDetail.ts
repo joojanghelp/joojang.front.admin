@@ -7,14 +7,14 @@ import { useParams } from 'react-router-dom';
 import GlobalAlert from 'lib/GlobalAlert';
 
 
-interface RouteParams {
-    user_uuid: string
-}
-
 interface formCode {
     type_code: string[]
     state_code: string[]
     level_code: string[]
+}
+
+interface RouteParams {
+    user_uuid: string
 }
 
 export default function useDetail() {

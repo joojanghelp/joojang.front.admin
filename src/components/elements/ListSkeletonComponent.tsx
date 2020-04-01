@@ -37,6 +37,11 @@ function ListSkeletonComponent(props: any) {
                                         {props.ListTable}
                                     </div>
                                 </div>
+                                <div className="card-body">
+                                    <div className="row">
+                                        {props.Pagination}
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

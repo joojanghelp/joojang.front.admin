@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {
     ListSkeletonComponent,
-    DefaultUserListTable
+    DefaultUserListTable,
+    Pagination
 } from 'components/elements';
 import useUserPage from 'hook/useUserPage';
 import GlobalAlert from 'lib/GlobalAlert';
@@ -11,7 +12,9 @@ function UsersPage() {
     const {
         userListItems,
         userInfoData,
+        listPageData,
         __handleClickUserInfoLink,
+        __handlePaginate,
         __handleClickUserInfoPage
     } = useUserPage();
 
@@ -94,6 +97,7 @@ function UsersPage() {
         // console.debug(state_user_list);
     },[userListItems])
 
+
     return (
         <>
             <ListSkeletonComponent
@@ -102,6 +106,12 @@ function UsersPage() {
                         items={userListItems}
                         handleUserInfoLink={__handleClickUserInfoLink}
                         handleUserInfoPageLink={__handleClickUserInfoPage}
+                    />
+                }
+                Pagination={
+                    <Pagination
+                    handlePaginate={__handlePaginate}
+                    listpagedata={listPageData}
                     />
                 }
             />

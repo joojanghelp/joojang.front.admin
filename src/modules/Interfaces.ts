@@ -57,6 +57,20 @@ export interface defaultApiResposePayload {
     data: defaultServerResponse
 }
 
+export interface defaultPaginationData {
+    current_page: number,
+    from: number,
+    last_page: string,
+    per_page: number,
+    prev_page_url: string | null,
+    to: number,
+    total: number,
+    first_page: string,
+    next_page: string,
+    prev_page: string
+}
+
+
 export interface defaultListItem {
     id: number;
     uuid: string;
@@ -84,7 +98,7 @@ export interface listTypeServerResponse {
     current_page: number;
     first_page_url: string;
     from: number;
-    last_page: number;
+    last_page: string;
     last_page_url: string;
     next_page_url: string | null;
     path: string;
@@ -92,6 +106,9 @@ export interface listTypeServerResponse {
     prev_page_url: string | null;
     to: number;
     total: number;
+    first_page: string;
+    next_page: string;
+    prev_page: string;
     items: defaultListItem[];
 }
 
@@ -112,7 +129,7 @@ export interface loginRequest {
 }
 
 export interface getUserListRequest {
-    pageNumber: number;
+    pageNumber: string;
 }
 
 export interface getUserInfoRequest {

@@ -87,7 +87,7 @@ const Root = ({
 
                     <Route path="/login" exact={ true } component={ LoginPage } />
 
-                    <Route path="/users" exact={ true } component={ UsersPage } />
+                    <Route path="/users/:page_number" exact={ true } component={ UsersPage } />
                     <Route path="/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
 
                     <Route path="/test" exact={ true } component={ TestPage } />

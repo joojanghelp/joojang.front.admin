@@ -2,10 +2,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import { attemptGetUserListAction, attemptGetUserInfoAction } from 'modules/redux/pages';
-import {  defaultListItem, userDetailData } from 'modules/Interfaces';
+import { defaultListItem, userDetailData, defaultPaginationData } from 'modules/Interfaces';
 import history from 'routes/History';
+import { useParams, withRouter } from 'react-router-dom';
+
+interface RouteParams {
+    page_number: string;
+}
 
 export default function useUserPage() {
+
+    const params = useParams<RouteParams>();
 
     const dispatch = useDispatch();
     const state_user_list = useSelector((state: RootState) => state.pages_state.users.user_list);
@@ -13,6 +20,19 @@ export default function useUserPage() {
 
     const [userListItems, setUserListItems ] = useState<defaultListItem[]>();
     const [userInfoData, setUserInfoData ] = useState<userDetailData>();
+    const [listPageData, setlistPageData ] = useState<defaultPaginationData>({
+        current_page: 0,
+        from: 0,
+        last_page: '',
+        per_page: 0,
+        prev_page_url: '',
+        to: 0,
+        total: 0,
+        first_page: '',
+        next_page: '',
+        prev_page: '',
+    });
+
 
 
     const __handleClickUserInfoLink = (user_uuid : string) => {
@@ -25,32 +45,52 @@ export default function useUserPage() {
        history.push(`/user/${user_uuid}/detail`);
     }
 
+    const __handlePaginate = (e: any) => {
+        const selected_page = e.selected + 1;
+        history.push(`/users/${selected_page}`);
+    }
+
     useEffect(() => {
         if(state_user_list.state === 'success' && typeof state_user_list.list !== undefined && state_user_list.list) {
-            // console.debug(state_user_list.list.items);
             setUserListItems(state_user_list.list.items);
+
+            setlistPageData({
+                current_page: state_user_list.list.current_page,
+                from: state_user_list.list.from,
+                last_page: state_user_list.list.last_page,
+                per_page: state_user_list.list.per_page,
+                prev_page_url: state_user_list.list.prev_page_url,
+                to: state_user_list.list.to,
+                total: state_user_list.list.total,
+                first_page: state_user_list.list.first_page,
+                next_page: state_user_list.list.next_page,
+                prev_page: state_user_list.list.prev_page,
+            });
         }
 
         if(state_user_info.state === 'success' && typeof state_user_info.data !== undefined && state_user_info.data) {
             setUserInfoData(state_user_info.data);
         }
 
-        if(state_user_list.state === 'idle') {
-            dispatch(attemptGetUserListAction({
-                pageNumber: 1
-            }));
-        }
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     },[state_user_list, state_user_info])
 
     useEffect(() => {
+        dispatch(attemptGetUserListAction({
+            pageNumber: (params.page_number) ? params.page_number : '1'
+        }));
+    }, [params]);
 
-    }, [userListItems]);
+    useEffect(() => {
+        // console.debug(listPageData);
+    }, [listPageData]);
 
     return {
         userListItems,
         userInfoData,
+        listPageData,
         __handleClickUserInfoLink,
+        __handlePaginate,
         __handleClickUserInfoPage
     };
 };

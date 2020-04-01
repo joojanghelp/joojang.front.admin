@@ -11,6 +11,7 @@ import {
     UsersPage,
     UserDetail,
     BlankPage,
+    BookCreatePage,
 } from 'components/pages';
 
 import {LoadingSpinner} from 'components/elements';
@@ -86,6 +87,7 @@ const Root = ({
                     <Route path="/blank" exact={ true } component={ BlankPage } />
 
                     <Route path="/login" exact={ true } component={ LoginPage } />
+                    <Route path="/book/create" exact={ true } component={ BookCreatePage } />
 
                     <Route path="/users/:page_number" exact={ true } component={ UsersPage } />
                     <Route path="/user/:user_uuid/detail" exact={ true } component={ UserDetail } />

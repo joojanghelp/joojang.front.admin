@@ -20,6 +20,7 @@ function LoginPage() {
         __handleChangePassword,
         __handleClickLoginLink,
         __handleRememberMeCheckbox,
+        __handleEnterKeyPress,
         loginState
     } = useLogin();
 
@@ -71,6 +72,7 @@ function LoginPage() {
                                                     handleChangePassword = { __handleChangePassword }
                                                     handleClickLoginLink = { __handleClickLoginLink }
                                                     handleRememberMeCheckbox = { __handleRememberMeCheckbox }
+                                                    handleEnterKeyPress = { __handleEnterKeyPress }
                                                 />
                                             }
                                         </div>

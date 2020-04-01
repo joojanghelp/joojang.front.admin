@@ -94,10 +94,10 @@ class GlobalAxios {
     };
 
     refresh_token = async () => this.defaultAxiosinstance.post('/api/v1/auth/refresh_token', {
-            refresh_token: Helper.getRefreshToken()
-        }).then(response => {
-            Helper.setLoginInfoRefresh(response.data);
-            this.user_access_token = response.data.access_token;
+            refresh_token: await Helper.getRefreshToken()
+        }).then(async response => {
+            await Helper.setLoginInfoRefresh(response.data);
+            this.user_access_token = await response.data.access_token;
             return {
                 state: true,
             }
@@ -108,26 +108,28 @@ class GlobalAxios {
                 // 어떻게 할것 인가.
             }
 
-            return {
-                state:false
-            }
-        });
+        return {
+            state:false
+        }
+    });
 
 
     init = async (auth: boolean, method : string, url: string, params: object): Promise<defaultServerResponse> => {
 
         if(auth) {
-            const refresh_token = await this.refresh_token();
-            if(refresh_token.state === false) {
-                Helper.removeLoginInfo();
-                GlobalAlert.default({
-                    text: '다시 로그인해 주세요.',
-                });
-                history.push('/login');
-            } else {
-                // Helper.setLoginInfoRefresh(refresh_token.data)
-            }
-        }
+            await Promise.all([this.refresh_token()]).then(function (e) {
+                const _first = e[0];
+                if(_first.state === false) {
+                    Helper.removeLoginInfo();
+                    GlobalAlert.default({
+                        text: '다시 로그인해 주세요.',
+                    });
+                    history.push('/login');
+                } else {
+                    // Helper.setLoginInfoRefresh(refresh_token.data)
+                }
+            });
+       }
 
         const axiosinstance: AxiosInstance = axios.create({
             baseURL: process.env.REACT_APP_API_URL,

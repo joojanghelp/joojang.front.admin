@@ -27,6 +27,9 @@ export interface defaultServerResponse {
     created_at_string: string;
     updated_at_string: string;
     email_verified_at_string: string;
+    data: {
+        info: boolean;
+    }
 }
 
 export interface userDetailData {
@@ -120,6 +123,21 @@ export interface siteBaseDataResponse {
 }
 
 
+export interface searchBookInfoInterface {
+    authors: string[],
+    contents: string,
+    datetime: string,
+    isbn: string,
+    price: number,
+    publisher: string,
+    sale_price: number,
+    status: string,
+    thumbnail: string,
+    title: string,
+    translators: string[],
+    url: string,
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * 로그인 리퀘스트.
@@ -141,6 +159,22 @@ export interface userActiveRequest {
     user_uuid: string;
     active: 'Y' | 'N'
 }
+
+export interface bookExitsCheckRequest {
+    book_uuid: string;
+}
+
+
+export interface bookCreateRequest {
+    uuid: string;
+    authors: string;
+    contents: string;
+    isbn: string;
+    publisher: string;
+    thumbnail: string;
+    title: string;
+}
+
 
 export interface UserDataUpdate {
     user_uuid: string | undefined;
@@ -183,6 +217,12 @@ export interface pageState {
             message?: string;
         },
         user_active_update: {
+            state: baseSagaStateType;
+            message?: string;
+        }
+    },
+    books: {
+        book_create: {
             state: baseSagaStateType;
             message?: string;
         }

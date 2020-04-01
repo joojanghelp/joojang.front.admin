@@ -39,11 +39,21 @@ export function* userUpdateActiveActionSaga({ payload }: { payload: Interfaces.u
     }
 }
 
+export function* bookCreateActionSaga({ payload }: { payload: Interfaces.bookCreateRequest }) {
+    const response = yield call(API.attemptBookCreateRequest, payload);
+    if(response.state === true) {
+        yield put({type:ActionType.BOOK_CREATE_SUCCESS, payload: response.data});
+    } else {
+        yield put({type:ActionType.BOOK_CREATE_ERROR, payload: response.data});
+    }
+}
+
 function* onPagesRequestWatcher() {
     yield takeLatest(ActionType.GET_USER_LIST_REQUEST as any, getUserListActionSaga);
     yield takeLatest(ActionType.GET_USER_INFO_REQUEST as any, getUserInfoActionSaga);
     yield takeLatest(ActionType.USER_DATA_UPDATE_REQUEST as any, userUpdateActionSaga);
     yield takeLatest(ActionType.USER_ACTIVE_UPDATE_REQUEST as any, userUpdateActiveActionSaga);
+    yield takeLatest(ActionType.BOOK_CREATE_REQUEST as any, bookCreateActionSaga);
 }
 
 export default [

@@ -53,11 +53,11 @@ export function setLoginInfo(payload: any): void {
     cookieManager.set('login_user_name', payload.user_name!);
 }
 
-export function setLoginInfoRefresh(payload: any): void {
-    cookieManager.set('login_token_type', payload.token_type!);
-    cookieManager.set('login_expires_in', payload.expires_in!);
-    cookieManager.set('login_access_token', payload.access_token!);
-    cookieManager.set('login_refresh_token', payload.refresh_token!);
+export async function setLoginInfoRefresh(payload: any) {
+    await cookieManager.set('login_token_type', payload.token_type!);
+    await cookieManager.set('login_expires_in', payload.expires_in!);
+    await cookieManager.set('login_access_token', payload.access_token!);
+    await cookieManager.set('login_refresh_token', payload.refresh_token!);
 }
 
 export function removeLoginInfo(): void {

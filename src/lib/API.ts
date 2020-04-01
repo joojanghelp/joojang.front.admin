@@ -24,3 +24,11 @@ export function attemptUserDataUpdate(payload: Interfaces.UserDataUpdate): Promi
 export function attemptUserActiveUpdate(payload: Interfaces.userActiveRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'post', `/api/v1/admin/users/active`, payload);
 };
+
+export function attemptBookExitsCheckRequest(payload: Interfaces.bookExitsCheckRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'get', `/api/v1/admin/book/${payload.book_uuid}/exits`, {});
+};
+
+export function attemptBookCreateRequest(payload: Interfaces.bookCreateRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'post', `/api/v1/user/books`, payload);
+};

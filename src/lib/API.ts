@@ -1,28 +1,26 @@
 import GlobalAxios from 'lib/GlobalAxios';
-import {
-    defaultServerResponse,
-    getUserListRequest,
-    loginRequest,
-    getUserInfoRequest,
-    UserDataUpdate,
-} from 'modules/Interfaces';
+import * as Interfaces from 'modules/Interfaces';
 
-export function attemptLogin(payload: loginRequest): Promise<defaultServerResponse> {
+export function attemptLogin(payload: Interfaces.loginRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(false, 'post', '/api/v1/auth/login', payload);
 };
 
-export function getSiteData(): Promise<defaultServerResponse> {
+export function getSiteData(): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true , 'get', '/api/v1/system/basedata', {});
 };
 
-export function attemptGetUserList(payload: getUserListRequest): Promise<defaultServerResponse> {
+export function attemptGetUserList(payload: Interfaces.getUserListRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'get', `/api/v1/admin/users/page/${payload.pageNumber}`, []);
 };
 
-export function attemptGetUserInfo(payload: getUserInfoRequest): Promise<defaultServerResponse> {
+export function attemptGetUserInfo(payload: Interfaces.getUserInfoRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'get', `/api/v1/admin/users/${payload.user_uuid}/info`, []);
 };
 
-export function attemptUserDataUpdate(payload: UserDataUpdate): Promise<defaultServerResponse> {
+export function attemptUserDataUpdate(payload: Interfaces.UserDataUpdate): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'post', `/api/v1/admin/users/${payload.user_uuid}/info`, payload);
+};
+
+export function attemptUserActiveUpdate(payload: Interfaces.userActiveRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'post', `/api/v1/admin/users/active`, payload);
 };

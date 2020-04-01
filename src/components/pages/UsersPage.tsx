@@ -15,7 +15,9 @@ function UsersPage() {
         listPageData,
         __handleClickUserInfoLink,
         __handlePaginate,
-        __handleClickUserInfoPage
+        __handleClickUserInfoPage,
+        __handleUserActiveUpdateLink,
+        __handleUserActiveDeleteLink
     } = useUserPage();
 
     useEffect(() =>{
@@ -106,6 +108,8 @@ function UsersPage() {
                         items={userListItems}
                         handleUserInfoLink={__handleClickUserInfoLink}
                         handleUserInfoPageLink={__handleClickUserInfoPage}
+                        handleUserActiveUpdateLink={__handleUserActiveUpdateLink}
+                        handleUserActiveDeleteLink={__handleUserActiveDeleteLink}
                     />
                 }
                 Pagination={

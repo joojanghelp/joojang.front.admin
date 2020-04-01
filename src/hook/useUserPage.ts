@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserListAction, attemptGetUserInfoAction } from 'modules/redux/pages';
+import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction } from 'modules/redux/pages';
 import { defaultListItem, userDetailData, defaultPaginationData } from 'modules/Interfaces';
 import history from 'routes/History';
-import { useParams, withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 interface RouteParams {
     page_number: string;
@@ -17,6 +17,7 @@ export default function useUserPage() {
     const dispatch = useDispatch();
     const state_user_list = useSelector((state: RootState) => state.pages_state.users.user_list);
     const state_user_info = useSelector((state: RootState) => state.pages_state.users.user_info);
+    const state_user_active_update = useSelector((state: RootState) => state.pages_state.users.user_active_update);
 
     const [userListItems, setUserListItems ] = useState<defaultListItem[]>();
     const [userInfoData, setUserInfoData ] = useState<userDetailData>();
@@ -48,6 +49,18 @@ export default function useUserPage() {
     const __handlePaginate = (e: any) => {
         const selected_page = e.selected + 1;
         history.push(`/users/${selected_page}`);
+    }
+
+    const __handleUserActiveUpdateLink = (user_uuid: string, active: 'Y' | 'N') => {
+        // console.debug('__handleUserActiveUpdateLink', user_uuid);
+        dispatch(attemptUserActiveUpdateAction({
+            user_uuid: user_uuid,
+            active: active
+        }));
+    }
+
+    const __handleUserActiveDeleteLink = (user_uuid: string) => {
+        alert('아직 구현 못함?');
     }
 
     useEffect(() => {
@@ -85,13 +98,23 @@ export default function useUserPage() {
         // console.debug(listPageData);
     }, [listPageData]);
 
+    useEffect(() => {
+        if(state_user_active_update.state === "success") {
+            dispatch(attemptGetUserListAction({
+                pageNumber: (params.page_number) ? params.page_number : '1'
+            }));
+        }
+    }, [state_user_active_update]);
+
     return {
         userListItems,
         userInfoData,
         listPageData,
         __handleClickUserInfoLink,
         __handlePaginate,
-        __handleClickUserInfoPage
+        __handleClickUserInfoPage,
+        __handleUserActiveUpdateLink,
+        __handleUserActiveDeleteLink
     };
 };
 

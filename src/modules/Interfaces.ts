@@ -88,6 +88,7 @@ export interface defaultListItem {
         code_id: string;
         code_name: string;
     },
+    active: 'Y' | 'N';
     activity_count: number;
     read_book_count: number;
     created_at: string;
@@ -136,6 +137,11 @@ export interface getUserInfoRequest {
     user_uuid: string;
 }
 
+export interface userActiveRequest {
+    user_uuid: string;
+    active: 'Y' | 'N'
+}
+
 export interface UserDataUpdate {
     user_uuid: string | undefined;
     user_email: string | undefined;
@@ -173,6 +179,10 @@ export interface pageState {
             data?: userDetailData
         },
         user_data_update: {
+            state: baseSagaStateType;
+            message?: string;
+        },
+        user_active_update: {
             state: baseSagaStateType;
             message?: string;
         }

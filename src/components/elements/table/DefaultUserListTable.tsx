@@ -5,9 +5,11 @@ interface initialProps {
     items: defaultListItem[] | undefined;
     handleUserInfoLink: ( user_uuid: string) => void;
     handleUserInfoPageLink: ( user_uuid: string) => void;
+    handleUserActiveUpdateLink: ( user_uuid: string, active: 'Y' | 'N') => void;
+    handleUserActiveDeleteLink: ( user_uuid: string) => void;
 }
 
-function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLink } : initialProps) {
+function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLink, handleUserActiveUpdateLink, handleUserActiveDeleteLink } : initialProps) {
     return (
         <>
             {/* <!-- Begin table --> */}
@@ -52,8 +54,17 @@ function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLin
                             <td>{item.read_book_count}</td>
                             <td>{item.activity_count}</td>
                             <td>{item.created_at_atring}</td>
-                            <th><button type="button" className="btn btn-danger">중지</button></th>
-                            <th><button type="button" className="btn btn-danger">탈퇴</button></th>
+                            {
+                                (function(){
+                                    switch(item.active) {
+                                        case 'Y' :
+                                            return <th><button type="button" className="btn btn-primary" onClick={() => handleUserActiveUpdateLink(item.uuid, 'N')}>중지</button></th>
+                                        case 'N' :
+                                            return <th><button type="button" className="btn btn-danger" onClick={() => handleUserActiveUpdateLink(item.uuid, 'Y')}>활성</button></th>
+                                    }
+                                })()
+                            }
+                            <th><button type="button" className="btn btn-danger" onClick={() => handleUserActiveDeleteLink(item.uuid)}>탈퇴</button></th>
                         </tr>
                     )}
                 </tbody>

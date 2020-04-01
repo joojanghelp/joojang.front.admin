@@ -1,4 +1,4 @@
-import React, {MouseEvent, ChangeEvent} from 'react';
+import React, {MouseEvent, ChangeEvent, KeyboardEvent} from 'react';
 
 interface LoginFormProps  {
     inputEmail: string;
@@ -7,10 +7,13 @@ interface LoginFormProps  {
     handleChangeEmail: ( email: string ) => void;
     handleChangePassword: ( password: string ) => void;
     handleClickLoginLink: ( event: MouseEvent ) => void;
+    handleEnterKeyPress: () => void;
     handleRememberMeCheckbox: ( event: ChangeEvent<HTMLInputElement> ) => void;
 };
 
-function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEmail, handleChangePassword, handleClickLoginLink, handleRememberMeCheckbox}: LoginFormProps ) {
+function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEmail, handleChangePassword, handleClickLoginLink, handleRememberMeCheckbox, handleEnterKeyPress}: LoginFormProps ) {
+    const onEnter = (event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && handleEnterKeyPress();
+
     return (
         <>
             <form className="user">
@@ -23,6 +26,7 @@ function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEma
                         placeholder="이메일을 입력해 주세요...."
                         value={inputEmail}
                         onChange={ e => handleChangeEmail(e.target.value) }
+                        onKeyPress={e => onEnter(e)}
                     />
                 </div>
                 <div className="form-group">
@@ -33,6 +37,7 @@ function LoginForm({inputEmail, inputPassword, handelRememberme, handleChangeEma
                         placeholder="비밀번호를 입력해 주세요..."
                         value={inputPassword}
                         onChange={ e => handleChangePassword(e.target.value) }
+                        onKeyPress={e => onEnter(e)}
                     />
                 </div>
                 <div className="form-group">

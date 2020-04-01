@@ -44,6 +44,17 @@ export default function useLogin() {
         }
     }
 
+    const __handleEnterKeyPress = () => {
+        if(rememberme) {
+            cookieManager.set('rememberme', inputEmail);
+        }
+        const dataObject: loginRequest = {
+            email: inputEmail,
+            password: inputPassword
+        }
+        dispatch(attemptLoginAction(dataObject));
+    }
+
 
     useEffect(() => {
         if(cookieManager.get('rememberme')) {
@@ -77,6 +88,7 @@ export default function useLogin() {
         __handleChangePassword,
         __handleClickLoginLink,
         __handleRememberMeCheckbox,
+        __handleEnterKeyPress,
         loginState
     };
 };

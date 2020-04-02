@@ -48,12 +48,56 @@ export function* bookCreateActionSaga({ payload }: { payload: Interfaces.bookCre
     }
 }
 
+export function* getBookListActionSaga({ payload }: { payload: Interfaces.getPageingListRequest }) {
+    const response = yield call(API.attemptGetBookListRequest, payload);
+    if(response.state === true) {
+        yield put({type:ActionType.GET_BOOKS_LIST_SUCCESS, payload: response.data});
+    } else {
+        yield put({type:ActionType.GET_BOOKS_LIST_ERROR, payload: response.data});
+    }
+}
+
+export function* getRecommendBookListActionSaga({ payload }: { payload: Interfaces.getRecommendRequest }) {
+    const response = yield call(API.attemptGetRecommendBookListRequest, payload);
+    if(response.state === true) {
+        yield put({type:ActionType.GET_RECOMMEND_BOOKS_LIST_SUCCESS, payload: response.data});
+    } else {
+        yield put({type:ActionType.GET_RECOMMEND_BOOKS_LIST_ERROR, payload: response.data});
+    }
+}
+
+
+export function* recommendBookAddActionSaga({ payload }: { payload: Interfaces.addRecommendBookRequest }) {
+    const response = yield call(API.attemptAddRecommendBookRequest, payload);
+    if(response.state === true) {
+        yield put({type:ActionType.ADD_RECOMMEND_BOOKS_SUCCESS, payload: response.data});
+    } else {
+        yield put({type:ActionType.ADD_RECOMMEND_BOOKS_ERROR, payload: response.data});
+    }
+}
+
+export function* recommendBookDeleteActionSaga({ payload }: { payload: Interfaces.deleteRecommendBookRequest }) {
+    const response = yield call(API.attemptDeleteRecommendBookRequest, payload);
+    if(response.state === true) {
+        yield put({type:ActionType.DELETE_RECOMMEND_BOOKS_SUCCESS, payload: response.data});
+    } else {
+        yield put({type:ActionType.DELETE_RECOMMEND_BOOKS_ERROR, payload: response.data});
+    }
+}
+
+
+
 function* onPagesRequestWatcher() {
     yield takeLatest(ActionType.GET_USER_LIST_REQUEST as any, getUserListActionSaga);
     yield takeLatest(ActionType.GET_USER_INFO_REQUEST as any, getUserInfoActionSaga);
     yield takeLatest(ActionType.USER_DATA_UPDATE_REQUEST as any, userUpdateActionSaga);
     yield takeLatest(ActionType.USER_ACTIVE_UPDATE_REQUEST as any, userUpdateActiveActionSaga);
     yield takeLatest(ActionType.BOOK_CREATE_REQUEST as any, bookCreateActionSaga);
+    yield takeLatest(ActionType.GET_BOOKS_LIST_REQUEST as any, getBookListActionSaga);
+    yield takeLatest(ActionType.GET_RECOMMEND_BOOKS_LIST_REQUEST as any, getRecommendBookListActionSaga);
+
+    yield takeLatest(ActionType.ADD_RECOMMEND_BOOKS_REQUEST as any, recommendBookAddActionSaga);
+    yield takeLatest(ActionType.DELETE_RECOMMEND_BOOKS_REQUEST as any, recommendBookDeleteActionSaga);
 }
 
 export default [

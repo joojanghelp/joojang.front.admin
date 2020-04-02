@@ -32,3 +32,19 @@ export function attemptBookExitsCheckRequest(payload: Interfaces.bookExitsCheckR
 export function attemptBookCreateRequest(payload: Interfaces.bookCreateRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'post', `/api/v1/user/books`, payload);
 };
+
+export function attemptGetBookListRequest(payload: Interfaces.getPageingListRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'get', `/api/v1/admin/books/page/${payload.pageNumber}`, payload);
+};
+
+export function attemptGetRecommendBookListRequest(payload: Interfaces.getRecommendRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'get', `/api/v1/admin/books/recommend/${payload.gubun}/page/${payload.pageNumber}`, payload);
+};
+
+export function attemptAddRecommendBookRequest(payload: Interfaces.addRecommendBookRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'post', `/api/v1/admin/books/recommend`, payload);
+};
+
+export function attemptDeleteRecommendBookRequest(payload: Interfaces.deleteRecommendBookRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'delete', `/api/v1/admin/books/recommend`, {params:payload});
+};

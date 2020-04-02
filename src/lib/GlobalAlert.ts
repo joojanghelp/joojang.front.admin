@@ -18,8 +18,6 @@ class GlobalAlert {
 
     constructor() {
         this.SwalAlert = withReactContent(Swal);
-
-
     }
 
     default = (alertOption: alertTypeInterface): void => {

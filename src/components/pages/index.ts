@@ -5,6 +5,8 @@
 
 export { default as LoginPage } from './LoginPage';
 export { default as UsersPage } from './UsersPage';
+export { default as BooksListPage } from './BooksListPage';
+export { default as RecommendBooksListPage } from './RecommendBooksListPage';
 export { default as UserDetail } from './UserDetail';
 export { default as BookCreatePage } from './BookCreatePage';
 

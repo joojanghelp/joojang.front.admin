@@ -8,6 +8,8 @@ export { default as BookCreateForm } from './form/BookCreateForm';
 export { default as DefaultTable } from './table/DefaultTable';
 export { default as DefaultUserListTable } from './table/DefaultUserListTable';
 export { default as BookSearchListTable } from './table/BookSearchListTable';
+export { default as BooksListTable } from './table/BooksListTable';
+export { default as RecommendBooksListTable } from './table/RecommendBooksListTable';
 
 
 export { default as Sidebar } from './common/Sidebar';

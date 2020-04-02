@@ -1,11 +1,12 @@
 import React, {MouseEvent} from 'react';
 
 interface initialProps  {
+    bookSearchString: string;
     handleBookSearchButtonClick: ( event: MouseEvent ) => void;
     handleBookSearchInputCange: ( event: string ) => void;
 };
 
-function BookCreateForm({handleBookSearchButtonClick, handleBookSearchInputCange} : initialProps) {
+function BookCreateForm({bookSearchString, handleBookSearchButtonClick, handleBookSearchInputCange} : initialProps) {
 
 
     return (
@@ -21,7 +22,7 @@ function BookCreateForm({handleBookSearchButtonClick, handleBookSearchInputCange
                                 <div className="form-group">
                                     <input type="text" className="form-control form-control-user" id="exampleInputEmail" placeholder="검색어를 입력해 주세요."
                                         onChange={ e => handleBookSearchInputCange(e.target.value) }
-                                        value={'책'}
+                                        value={bookSearchString}
                                     />
                                 </div>
                             <button type="button" className="btn btn-primary btn-lg btn-block"

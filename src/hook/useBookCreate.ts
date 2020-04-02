@@ -13,7 +13,7 @@ export default function useBookCreate() {
     const state_books = useSelector((state: RootState) => state.pages_state.books);
 
     const dispatch = useDispatch();
-    const [bookSearchString, setBookSearchString] = useState('책');
+    const [bookSearchString, setBookSearchString] = useState('');
     const [bookSearchResultItem, setBookSearchResultItem] = useState<searchBookInfoInterface[]>([]);
 
     const __handleBookSearchButtonClick = (e: MouseEvent) => {
@@ -82,6 +82,7 @@ export default function useBookCreate() {
         __handleBookSearchButtonClick,
         __handleBookSearchInputCange,
         bookSearchResultItem,
+        bookSearchString,
         __handleClickBookServerCreate,
 
     };

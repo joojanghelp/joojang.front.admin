@@ -40,7 +40,13 @@ function Sidebar() {
                 {/* <!-- Heading --> */}
                 <div className="sidebar-heading"> 책 </div>
                 <li className="nav-item">
+                    <Link to="/books/recommend/B11000/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>추천 도서</span></Link>
+                </li>
+                <li className="nav-item">
                     <Link to="/book/create" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 등록</span></Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/books/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 리스트</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}

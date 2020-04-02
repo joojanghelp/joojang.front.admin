@@ -8,6 +8,13 @@ export const attemptGetUserListAction = (payload: Interfaces.getUserListRequest)
     };
 }
 
+export const attemptGetBooksListAction = (payload: Interfaces.getPageingListRequest) => {
+    return {
+        type: ActionType.GET_BOOKS_LIST_REQUEST,
+        payload
+    };
+}
+
 export const attemptGetUserInfoAction = (payload: Interfaces.getUserInfoRequest) => {
     return {
         type: ActionType.GET_USER_INFO_REQUEST,
@@ -32,6 +39,27 @@ export const attemptUserActiveUpdateAction = (payload: Interfaces.userActiveRequ
 export const attemptBookCreateAction = (payload: Interfaces.bookCreateRequest) => {
     return {
         type: ActionType.BOOK_CREATE_REQUEST,
+        payload
+    };
+}
+
+export const attemptRecommendBookListAction = (payload: Interfaces.getRecommendRequest) => {
+    return {
+        type: ActionType.GET_RECOMMEND_BOOKS_LIST_REQUEST,
+        payload
+    };
+}
+
+export const attemptAddRecommendBookAction = (payload: Interfaces.addRecommendBookRequest) => {
+    return {
+        type: ActionType.ADD_RECOMMEND_BOOKS_REQUEST,
+        payload
+    };
+}
+
+export const attemptDeleteRecommendBookAction = (payload: Interfaces.deleteRecommendBookRequest) => {
+    return {
+        type: ActionType.DELETE_RECOMMEND_BOOKS_REQUEST,
         payload
     };
 }

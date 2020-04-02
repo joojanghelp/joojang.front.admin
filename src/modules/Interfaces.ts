@@ -98,6 +98,54 @@ export interface defaultListItem {
     created_at_atring: string;
 }
 
+export interface bookListItem {
+    id: number;
+    uuid: string;
+    title: string;
+    authors: string;
+    isbn: string;
+    publisher: string;
+    thumbnail: string;
+    active: string;
+    user_name: string;
+    contents: string;
+    user_id: number;
+    recommend: boolean;
+    created_at_atring: string;
+}
+
+export interface RecommendbookListItem {
+    list_id: number;
+    book_id: number;
+    code_id: string;
+    code_name: string;
+    book_title: string;
+    book_thumbnail: string;
+    book_uuid: string;
+    book_contents: string;
+    book_user_id: number;
+    book_user_name: string;
+    created_at_atring: string;
+}
+export interface RecommendlistTypeServerResponse {
+    current_page: number;
+    first_page_url: string;
+    from: number;
+    last_page: string;
+    last_page_url: string;
+    next_page_url: string | null;
+    path: string;
+    per_page: number;
+    prev_page_url: string | null;
+    to: number;
+    total: number;
+    first_page: string;
+    next_page: string;
+    prev_page: string;
+    items: RecommendbookListItem[];
+}
+
+
 export interface listTypeServerResponse {
     current_page: number;
     first_page_url: string;
@@ -114,6 +162,24 @@ export interface listTypeServerResponse {
     next_page: string;
     prev_page: string;
     items: defaultListItem[];
+}
+
+export interface booklistTypeServerResponse {
+    current_page: number;
+    first_page_url: string;
+    from: number;
+    last_page: string;
+    last_page_url: string;
+    next_page_url: string | null;
+    path: string;
+    per_page: number;
+    prev_page_url: string | null;
+    to: number;
+    total: number;
+    first_page: string;
+    next_page: string;
+    prev_page: string;
+    items: bookListItem[];
 }
 
 export interface siteBaseDataResponse {
@@ -151,6 +217,10 @@ export interface getUserListRequest {
     pageNumber: string;
 }
 
+export interface getPageingListRequest {
+    pageNumber: string;
+}
+
 export interface getUserInfoRequest {
     user_uuid: string;
 }
@@ -164,6 +234,19 @@ export interface bookExitsCheckRequest {
     book_uuid: string;
 }
 
+export interface addRecommendBookRequest {
+    book_id: number;
+    gubun: string;
+}
+
+export interface deleteRecommendBookRequest {
+    book_id: number;
+}
+
+export interface getRecommendRequest {
+    pageNumber: string;
+    gubun: string;
+}
 
 export interface bookCreateRequest {
     uuid: string;
@@ -223,6 +306,22 @@ export interface pageState {
     },
     books: {
         book_create: {
+            state: baseSagaStateType;
+            message?: string;
+        },
+        book_list: {
+            state: baseSagaStateType;
+            list?: booklistTypeServerResponse
+        },
+        recommend_book_list: {
+            state: baseSagaStateType;
+            list?: RecommendlistTypeServerResponse
+        },
+        delete_recommend_book: {
+            state: baseSagaStateType;
+            message?: string;
+        },
+        add_recommend_book: {
             state: baseSagaStateType;
             message?: string;
         }

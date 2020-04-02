@@ -10,6 +10,7 @@ function BookCreatePage() {
         __handleBookSearchInputCange,
         bookSearchResultItem,
         __handleClickBookServerCreate,
+        bookSearchString
     } = useBookCreate();
     return (
         <>
@@ -19,6 +20,7 @@ function BookCreatePage() {
                         <BookCreateForm
                             handleBookSearchButtonClick={__handleBookSearchButtonClick}
                             handleBookSearchInputCange={__handleBookSearchInputCange}
+                            bookSearchString={bookSearchString}
                         />
                     </>
                 }

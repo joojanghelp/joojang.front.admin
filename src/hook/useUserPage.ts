@@ -59,7 +59,7 @@ export default function useUserPage() {
     }
 
     const __handleUserActiveDeleteLink = (user_uuid: string) => {
-        alert('아직 구현 못함?');
+        alert('어떻게 할것 인가?');
     }
 
     useEffect(() => {
@@ -95,7 +95,6 @@ export default function useUserPage() {
     }, [params]);
 
     useEffect(() => {
-        // console.debug(listPageData);
     }, [listPageData]);
 
     useEffect(() => {

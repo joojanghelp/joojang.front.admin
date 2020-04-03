@@ -11,6 +11,7 @@ export { default as BookSearchListTable } from './table/BookSearchListTable';
 export { default as BooksListTable } from './table/BooksListTable';
 export { default as RecommendBooksListTable } from './table/RecommendBooksListTable';
 export { default as BooksActivityListTable } from './table/BooksActivityListTable';
+export { default as UserInfoTable } from './table/UserInfoTable';
 
 
 export { default as Sidebar } from './common/Sidebar';

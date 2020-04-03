@@ -21,6 +21,10 @@ export function* getUserInfoActionSaga({ payload }: { payload: Interfaces.getUse
     }
 }
 
+export function* getUserInfoActionResetSaga() {
+    yield put({type:ActionType.GET_USER_INFO_RESET});
+}
+
 export function* userUpdateActionSaga({ payload }: { payload: Interfaces.UserDataUpdate }) {
     const response = yield call(API.attemptUserDataUpdate, payload);
     if(response.state === true) {

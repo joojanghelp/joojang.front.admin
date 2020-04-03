@@ -22,6 +22,12 @@ export const attemptGetUserInfoAction = (payload: Interfaces.getUserInfoRequest)
     };
 }
 
+export const attemptGetUserInfoResetAction = () => {
+    return {
+        type: ActionType.GET_USER_INFO_RESET
+    };
+}
+
 export const attemptUserDataUpdateAction = (payload: Interfaces.UserDataUpdate) => {
     return {
         type: ActionType.USER_DATA_UPDATE_REQUEST,

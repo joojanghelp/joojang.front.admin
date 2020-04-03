@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction } from 'modules/redux/pages';
+import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction, attemptGetUserInfoResetAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import history from 'routes/History';
 import { useParams } from 'react-router-dom';
@@ -39,9 +39,10 @@ export default function useUserPage() {
 
 
     const __handleClickUserInfoLink = (user_uuid : string) => {
-        dispatch(attemptGetUserInfoAction({
-            user_uuid: user_uuid
-        }));
+        // dispatch(attemptGetUserInfoAction({
+        //     user_uuid: user_uuid
+        // }));
+        history.push(`/joojang.front.admin/user/${user_uuid}/info`);
     }
 
     const __handleClickUserInfoPage = (user_uuid : string) => {
@@ -58,6 +59,10 @@ export default function useUserPage() {
             user_uuid: user_uuid,
             active: active
         }));
+    }
+
+    const __handleClickUserInfoConfirmButton = async () => {
+        await dispatch(attemptGetUserInfoResetAction());
     }
 
     const __handleUserActiveDeleteLink = (user_uuid: string) => {
@@ -109,7 +114,6 @@ export default function useUserPage() {
 
 
     useEffect(() => {
-
         async function loadingState() {
             await setIsLoading('loading');
         }
@@ -132,15 +136,23 @@ export default function useUserPage() {
     }, [setIsLoading])
 
 
+    useEffect(() => {
+        // mount?
+        console.debug('mount?');
+        __handleClickUserInfoConfirmButton();
+    }, [])
+
+
     return {
         userListItems,
         userInfoData,
         listPageData,
+        isLoading,
         __handleClickUserInfoLink,
         __handlePaginate,
         __handleClickUserInfoPage,
         __handleUserActiveUpdateLink,
         __handleUserActiveDeleteLink,
-        isLoading,
+        __handleClickUserInfoConfirmButton,
     };
 };

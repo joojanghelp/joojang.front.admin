@@ -1,11 +1,10 @@
 import { useState, useEffect, MouseEvent} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserInfoAction, attemptUserDataUpdateAction } from 'modules/redux/pages';
+import { attemptGetUserInfoAction, attemptUserDataUpdateAction, attemptGetUserInfoResetAction } from 'modules/redux/pages';
 import { userDetailData } from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
 import GlobalAlert from 'lib/GlobalAlert';
-
 
 interface formCode {
     type_code: string[]
@@ -81,6 +80,10 @@ export default function useDetail() {
         });
     }
 
+    const __handleUserInfoReset = () => {
+        dispatch(attemptGetUserInfoResetAction());
+    }
+
     // const __handleUseDataSubmit = (e: FormEvent<HTMLFormElement>) => {
     //     e.preventDefault();
     // }
@@ -151,8 +154,8 @@ export default function useDetail() {
         __handleUserTypeChange,
         __handleUserStateChange,
         __handleUserLevelChange,
-        __handleUseDataSubmit
-
+        __handleUseDataSubmit,
+        __handleUserInfoReset,
     };
 };
 

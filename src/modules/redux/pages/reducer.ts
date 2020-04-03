@@ -130,6 +130,19 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
             },
         };
     },
+    [ActionType.GET_USER_INFO_RESET](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
+        return {
+            ...state,
+            users: {
+                user_list: state.users.user_list,
+                user_info: {
+                    state: 'idle',
+                },
+                user_data_update: state.users.user_data_update,
+                user_active_update : state.users.user_active_update,
+            },
+        };
+    },
     [ActionType.USER_DATA_UPDATE_SUCCESS](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,

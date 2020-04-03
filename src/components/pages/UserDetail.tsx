@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import useDetail from 'hook/useDetail';
 import { UserDetailForm, InfoSkeletonComponent } from 'components/elements';
 
@@ -13,7 +13,16 @@ function UserDetail() {
         __handleUserStateChange,
         __handleUserLevelChange,
         __handleUseDataSubmit,
+        __handleUserInfoReset,
     } = useDetail();
+
+    useEffect(() => {
+        return () => {
+            console.debug(4);
+            __handleUserInfoReset();
+        }
+    }, []);
+
 
     return (
         <>

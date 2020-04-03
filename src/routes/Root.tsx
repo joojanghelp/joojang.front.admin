@@ -15,6 +15,7 @@ import {
     BooksListPage,
     RecommendBooksListPage,
     BookActivityListPage,
+    UserInfoPage,
 } from 'components/pages';
 
 import {LoadingSpinner} from 'components/elements';
@@ -97,6 +98,7 @@ const Root = ({
                     <Route path="/joojang.front.admin/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
                     <Route path="/joojang.front.admin/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
                     <Route path="/joojang.front.admin/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
+                    <Route path="/joojang.front.admin/user/:user_uuid/info" exact={ true } component={ UserInfoPage } />
 
 
                     <Route path="/test" exact={ true } component={ TestPage } />

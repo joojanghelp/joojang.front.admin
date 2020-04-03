@@ -41,7 +41,7 @@ const Root = ({
     useEffect(() => {
         if(!Helper.getAccessToken()) {
             if(router_state.location.pathname !== '/login') {
-                history.push('/login');
+                history.push('/joojang.front.admin/login');
             }
         }
     }, [router_state])
@@ -57,11 +57,11 @@ const Root = ({
                     // setIsLoading(false);
                 } else {
                     setIsLoading(false);
-                    history.push('/login');
+                    history.push('/joojang.front.admin/login');
                 }
             } else {
                 setIsLoading(false);
-                history.push('/login');
+                history.push('/joojang.front.admin/login');
             }
         };
         fetchData();
@@ -86,21 +86,21 @@ const Root = ({
     return (
             <Router history={ Routerhistory }>
                 <Switch>
-                    <Route path="/" exact={ true } component={ UsersPage } />
-                    <Route path="/blank" exact={ true } component={ BlankPage } />
+                    <Route path="/joojang.front.admin/" exact={ true } component={ UsersPage } />
+                    <Route path="/joojang.front.admin/blank" exact={ true } component={ BlankPage } />
 
-                    <Route path="/login" exact={ true } component={ LoginPage } />
-                    <Route path="/book/create" exact={ true } component={ BookCreatePage } />
+                    <Route path="/joojang.front.admin/login" exact={ true } component={ LoginPage } />
+                    <Route path="/joojang.front.admin/book/create" exact={ true } component={ BookCreatePage } />
 
-                    <Route path="/users/:page_number" exact={ true } component={ UsersPage } />
-                    <Route path="/books/:page_number" exact={ true } component={ BooksListPage } />
-                    <Route path="/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
-                    <Route path="/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
-                    <Route path="/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
+                    <Route path="/joojang.front.admin/users/:page_number" exact={ true } component={ UsersPage } />
+                    <Route path="/joojang.front.admin/books/:page_number" exact={ true } component={ BooksListPage } />
+                    <Route path="/joojang.front.admin/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
+                    <Route path="/joojang.front.admin/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
+                    <Route path="/joojang.front.admin/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
 
 
                     <Route path="/test" exact={ true } component={ TestPage } />
-                    <Redirect path="*" to="/login" />
+                    <Redirect path="*" to="/joojang.front.admin/login" />
                 </Switch>
             </Router>
         );

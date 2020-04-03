@@ -60,7 +60,7 @@ class GlobalAxios {
                         GlobalAlert.default({
                             text: error.response.data.error_message,
                         });
-                        history.push('/login');
+                        history.push('/joojang.front.admin/login');
                     }
 
                     const errorMessage = error.response.data.error_message;
@@ -123,7 +123,7 @@ class GlobalAxios {
                     GlobalAlert.default({
                         text: '다시 로그인해 주세요.',
                     });
-                    history.push('/login');
+                    history.push('/joojang.front.admin/login');
                 } else {
                     // Helper.setLoginInfoRefresh(refresh_token.data)
                 }

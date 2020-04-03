@@ -17,7 +17,8 @@ function UsersPage() {
         __handlePaginate,
         __handleClickUserInfoPage,
         __handleUserActiveUpdateLink,
-        __handleUserActiveDeleteLink
+        __handleUserActiveDeleteLink,
+        isLoading,
     } = useUserPage();
 
     useEffect(() =>{
@@ -105,6 +106,7 @@ function UsersPage() {
             <ListSkeletonComponent
                 ListTable={
                     <DefaultUserListTable
+                        isloading={isLoading}
                         items={userListItems}
                         handleUserInfoLink={__handleClickUserInfoLink}
                         handleUserInfoPageLink={__handleClickUserInfoPage}

@@ -31,6 +31,8 @@ export default function useRecommendBooksList() {
         prev_page: '',
     });
 
+    const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
+
     const __handlePaginate = () => {
         console.debug('__handlePaginate');
     }
@@ -82,12 +84,31 @@ export default function useRecommendBooksList() {
     }, [state_delete_recommend_book])
 
 
+    useEffect(() => {
+
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+
+
+        if(state_book_list.state === 'loading' || state_delete_recommend_book.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_book_list.state, state_delete_recommend_book.state])
+
     return {
         booksListItems,
         __handlePaginate,
         listPageData,
-        __handleClickDeleteButton
-
+        __handleClickDeleteButton,
+        isLoading,
     };
 };
 

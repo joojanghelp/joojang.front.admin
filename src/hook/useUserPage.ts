@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction } from 'modules/redux/pages';
-import { defaultListItem, userDetailData, defaultPaginationData } from 'modules/Interfaces';
+import * as Interfaces from 'modules/Interfaces';
 import history from 'routes/History';
 import { useParams } from 'react-router-dom';
 
@@ -19,9 +19,9 @@ export default function useUserPage() {
     const state_user_info = useSelector((state: RootState) => state.pages_state.users.user_info);
     const state_user_active_update = useSelector((state: RootState) => state.pages_state.users.user_active_update);
 
-    const [userListItems, setUserListItems ] = useState<defaultListItem[]>();
-    const [userInfoData, setUserInfoData ] = useState<userDetailData>();
-    const [listPageData, setlistPageData ] = useState<defaultPaginationData>({
+    const [userListItems, setUserListItems ] = useState<Interfaces.defaultListItem[]>();
+    const [userInfoData, setUserInfoData ] = useState<Interfaces.userDetailData>();
+    const [listPageData, setlistPageData ] = useState<Interfaces.defaultPaginationData>({
         current_page: 0,
         from: 0,
         last_page: '',
@@ -33,6 +33,8 @@ export default function useUserPage() {
         next_page: '',
         prev_page: '',
     });
+
+    const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
 
 
@@ -65,7 +67,6 @@ export default function useUserPage() {
     useEffect(() => {
         if(state_user_list.state === 'success' && typeof state_user_list.list !== undefined && state_user_list.list) {
             setUserListItems(state_user_list.list.items);
-
             setlistPageData({
                 current_page: state_user_list.list.current_page,
                 from: state_user_list.list.from,
@@ -106,6 +107,31 @@ export default function useUserPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_user_active_update]);
 
+
+    useEffect(() => {
+
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+
+
+        if(state_user_list.state === 'loading' || state_user_info.state === 'loading' || state_user_active_update.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_user_list.state, state_user_info.state, state_user_active_update.state])
+
+    useEffect(() => {
+        // console.debug(pageSagaState);
+    }, [setIsLoading])
+
+
     return {
         userListItems,
         userInfoData,
@@ -114,6 +140,7 @@ export default function useUserPage() {
         __handlePaginate,
         __handleClickUserInfoPage,
         __handleUserActiveUpdateLink,
-        __handleUserActiveDeleteLink
+        __handleUserActiveDeleteLink,
+        isLoading,
     };
 };

@@ -16,6 +16,12 @@ export { default as BooksActivityListTable } from './table/BooksActivityListTabl
 export { default as Sidebar } from './common/Sidebar';
 export { default as Topbar } from './common/Topbar';
 export { default as Footer } from './common/Footer';
+
+export { default as TopbarSearch } from './common/topbar/TopbarSearch';
+export { default as TopbarAlerts } from './common/topbar/TopbarAlerts';
+export { default as TopbarMessages } from './common/topbar/TopbarMessages';
+export { default as TopbarInformation } from './common/topbar/TopbarInformation';
+
 export { default as Pagination } from './common/Pagination';
 
 export { default as ListSkeletonComponent } from './ListSkeletonComponent';

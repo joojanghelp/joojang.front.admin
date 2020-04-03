@@ -12,7 +12,8 @@ function BookActivityListPage() {
         booksActivityListItems,
         listPageData,
         __handleClickActivityDeleteButton,
-        __handlePaginate
+        __handlePaginate,
+        isLoading,
     } = useActivity();
 
     return (
@@ -20,6 +21,7 @@ function BookActivityListPage() {
             <ListSkeletonComponent
                 ListTable={
                     <BooksActivityListTable
+                        isloading={isLoading}
                         items={booksActivityListItems}
                         handleClickActivityDeleteButton={__handleClickActivityDeleteButton}
                     />

@@ -10,7 +10,8 @@ function BookCreatePage() {
         __handleBookSearchInputCange,
         bookSearchResultItem,
         __handleClickBookServerCreate,
-        bookSearchString
+        bookSearchString,
+        isLoading,
     } = useBookCreate();
     return (
         <>
@@ -27,6 +28,7 @@ function BookCreatePage() {
                 ListTable={
                     <>
                         <BookSearchListTable
+                            isloading={isLoading}
                             items={bookSearchResultItem}
                             handleClickBookCreate={__handleClickBookServerCreate}
                         />

@@ -31,6 +31,8 @@ export default function useBookCreate() {
         prev_page: '',
     });
 
+    const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
+
     const __handleClickActivityDeleteButton = (list_uid : string) => {
         dispatch(attemptDeleteBookActivityAction({
             activity_uuid:list_uid
@@ -79,11 +81,32 @@ export default function useBookCreate() {
     }, []);
 
 
+    useEffect(() => {
+
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+
+
+        if(state_book_activity_list.state === 'loading' || dtate_delete_book_activity.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_book_activity_list.state, dtate_delete_book_activity.state])
+
+
     return {
         booksActivityListItems,
         listPageData,
         __handleClickActivityDeleteButton,
         __handlePaginate,
+        isLoading,
     };
 };
 

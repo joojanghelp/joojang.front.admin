@@ -1,12 +1,14 @@
 import React from 'react';
-import { searchBookInfoInterface } from 'modules/Interfaces';
+import * as Interfaces from 'modules/Interfaces';
+import {LoadingSpinner} from 'components/elements';
 
 interface initialProps {
-    items: searchBookInfoInterface[];
+    isloading: Interfaces.baseSagaStateType;
+    items: Interfaces.searchBookInfoInterface[];
     handleClickBookCreate: ( book_key: number ) => void;
 }
 
-function DefaultSearchListTable({items, handleClickBookCreate}: initialProps) {
+function DefaultSearchListTable({isloading, items, handleClickBookCreate}: initialProps) {
     return (
         <>
             {/* <!-- Begin table --> */}
@@ -32,18 +34,25 @@ function DefaultSearchListTable({items, handleClickBookCreate}: initialProps) {
                         <th>authors</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                {items && items.map((item: searchBookInfoInterface, i:number) =>
-                        <tr key={i}>
-                            <td><img src={item.thumbnail} alt="thumbnail" onClick={() => handleClickBookCreate(i)}/></td>
-                            <td>{item.title}</td>
-                            <td>{item.status}</td>
-                            <td>{item.isbn}</td>
-                            <td>{item.contents}</td>
-                            <td>{item.authors}</td>
-                        </tr>
-                    )}
-                </tbody>
+                {isloading === 'loading'
+                    ?
+                    <tbody><tr><td colSpan={10}><div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div></td></tr></tbody>
+                    :
+                    <tbody>
+                    {
+                        items && items.map((item: Interfaces.searchBookInfoInterface, i:number) =>
+                            <tr key={i}>
+                                <td><img src={item.thumbnail} alt="thumbnail" onClick={() => handleClickBookCreate(i)}/></td>
+                                <td>{item.title}</td>
+                                <td>{item.status}</td>
+                                <td>{item.isbn}</td>
+                                <td>{item.contents}</td>
+                                <td>{item.authors}</td>
+                            </tr>
+                        )
+                    }
+                    </tbody>
+                }
             </table>
         </>
     );

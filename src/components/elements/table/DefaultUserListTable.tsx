@@ -1,15 +1,17 @@
 import React from 'react';
-import { defaultListItem } from 'modules/Interfaces';
+import * as Interfaces from 'modules/Interfaces';
+import {LoadingSpinner} from 'components/elements';
 
 interface initialProps {
-    items: defaultListItem[] | undefined;
+    isloading: Interfaces.baseSagaStateType;
+    items: Interfaces.defaultListItem[] | undefined;
     handleUserInfoLink: ( user_uuid: string) => void;
     handleUserInfoPageLink: ( user_uuid: string) => void;
     handleUserActiveUpdateLink: ( user_uuid: string, active: 'Y' | 'N') => void;
     handleUserActiveDeleteLink: ( user_uuid: string) => void;
 }
 
-function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLink, handleUserActiveUpdateLink, handleUserActiveDeleteLink } : initialProps) {
+function DefaultUserListTable({ isloading, items, handleUserInfoLink, handleUserInfoPageLink, handleUserActiveUpdateLink, handleUserActiveDeleteLink } : initialProps) {
     return (
         <>
             {/* <!-- Begin table --> */}
@@ -43,8 +45,13 @@ function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLin
                         <th>탈퇴</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                    {items && items.map((item: defaultListItem, i:number) =>
+                {isloading === 'loading'
+                    ?
+                    <tbody><tr><td colSpan={10}><div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div></td></tr></tbody>
+                    :
+                    <tbody>
+                    {
+                    items && items.map((item: Interfaces.defaultListItem, i:number) =>
                         <tr key={i}>
                             <td>{item.email}&nbsp;<span className="badge badge-pill badge-primary" onClick={() => handleUserInfoLink(item.uuid)}>정보</span>&nbsp;<span className="badge badge-pill badge-primary" onClick={() => handleUserInfoPageLink(item.uuid)}>수정</span></td>
                             <td>{item.name}</td>
@@ -58,16 +65,18 @@ function DefaultUserListTable({ items, handleUserInfoLink, handleUserInfoPageLin
                                 (function(){
                                     switch(item.active) {
                                         case 'Y' :
-                                            return <th><button type="button" className="btn btn-primary" onClick={() => handleUserActiveUpdateLink(item.uuid, 'N')}>중지</button></th>
+                                            return <td><button type="button" className="btn btn-primary" onClick={() => handleUserActiveUpdateLink(item.uuid, 'N')}>중지</button></td>
                                         case 'N' :
-                                            return <th><button type="button" className="btn btn-danger" onClick={() => handleUserActiveUpdateLink(item.uuid, 'Y')}>활성</button></th>
+                                            return <td><button type="button" className="btn btn-danger" onClick={() => handleUserActiveUpdateLink(item.uuid, 'Y')}>활성</button></td>
                                     }
                                 })()
                             }
-                            <th><button type="button" className="btn btn-danger" onClick={() => handleUserActiveDeleteLink(item.uuid)}>탈퇴</button></th>
+                            <td><button type="button" className="btn btn-danger" onClick={() => handleUserActiveDeleteLink(item.uuid)}>탈퇴</button></td>
                         </tr>
-                    )}
-                </tbody>
+                    )
+                    }
+                    </tbody>
+                }
             </table>
         </>
     );

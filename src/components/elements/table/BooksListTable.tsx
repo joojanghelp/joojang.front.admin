@@ -1,13 +1,15 @@
 import React from 'react';
 import * as Interfaces from 'modules/Interfaces';
+import {LoadingSpinner} from 'components/elements';
 
 interface initialProps {
+    isloading: Interfaces.baseSagaStateType;
     items: Interfaces.bookListItem[];
     handleClickRecommendAddButton: (book_id: number) => void;
     handleClickRecommendDeleteButton: (book_id: number) => void;
 }
 
-function BooksListTable({ items, handleClickRecommendAddButton, handleClickRecommendDeleteButton }: initialProps) {
+function BooksListTable({ isloading, items, handleClickRecommendAddButton, handleClickRecommendDeleteButton }: initialProps) {
     return (
         <>
             {/* <!-- Begin table --> */}
@@ -35,8 +37,13 @@ function BooksListTable({ items, handleClickRecommendAddButton, handleClickRecom
                         <th>authors</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                {items && items.map((item: Interfaces.bookListItem, i:number) =>
+                {isloading === 'loading'
+                    ?
+                    <tbody><tr><td colSpan={10}><div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div></td></tr></tbody>
+                    :
+                    <tbody>
+                    {
+                        items && items.map((item: Interfaces.bookListItem, i:number) =>
                         <tr key={i}>
                             {/* <td><button type="button" className="btn btn-primary" onClick={() => handleClickRecommendAddButton(item.id)}>등록</button></td> */}
                             {
@@ -56,8 +63,10 @@ function BooksListTable({ items, handleClickRecommendAddButton, handleClickRecom
                             <td>{item.contents}</td>
                             <td>{item.authors}</td>
                         </tr>
-                    )}
-                </tbody>
+                    )
+                    }
+                    </tbody>
+                }
             </table>
         </>
     );

@@ -14,6 +14,7 @@ function BooksListPage() {
         __handleClickRecommendAddButton,
         __handleClickRecommendDeleteButton,
         listPageData,
+        isLoading,
     } = useBooksList();
 
     return (
@@ -21,6 +22,7 @@ function BooksListPage() {
             <ListSkeletonComponent
                 ListTable={
                     <BooksListTable
+                        isloading={isLoading}
                         items={booksListItems}
                         handleClickRecommendAddButton={__handleClickRecommendAddButton}
                         handleClickRecommendDeleteButton={__handleClickRecommendDeleteButton}

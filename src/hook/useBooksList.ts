@@ -18,6 +18,7 @@ export default function useBooksList() {
     const state_book_list = useSelector((state: RootState) => state.pages_state.books.book_list);
     const state_add_recommend_book = useSelector((state: RootState) => state.pages_state.books.add_recommend_book);
     const state_delete_recommend_book = useSelector((state: RootState) => state.pages_state.books.delete_recommend_book);
+
     const state_sitedata = useSelector((state: RootState) => state.sitedata);
     const [booksListItems, setBooksListItems ] = useState<Interfaces.bookListItem[]>([]);
     const [listPageData, setlistPageData ] = useState<Interfaces.defaultPaginationData>({
@@ -32,6 +33,8 @@ export default function useBooksList() {
         next_page: '',
         prev_page: '',
     });
+
+    const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
     const __handlePaginate = () => {
         console.debug('::: __handlePaginate :::');
@@ -111,14 +114,30 @@ export default function useBooksList() {
         // console.debug(listPageData);
     }, [listPageData]);
 
+    useEffect(() => {
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+
+        if(state_book_list.state === 'loading' || state_add_recommend_book.state === 'loading' || state_delete_recommend_book.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_book_list.state, state_add_recommend_book.state, state_delete_recommend_book.state])
+
     return {
         booksListItems,
         __handlePaginate,
         __handleClickRecommendAddButton,
         __handleClickRecommendDeleteButton,
         listPageData,
-
-
+        isLoading,
     };
 };
 

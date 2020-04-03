@@ -7,7 +7,7 @@ import Spinner from 'react-spinner-material';
 export default function LoadingSpinner() {
     return (
         <>
-            <Spinner radius={10} color={"#333"} stroke={2} visible={true} />
+            <Spinner radius={30} color={"#333333"} stroke={5} visible={true} />
         </>
     );
 }

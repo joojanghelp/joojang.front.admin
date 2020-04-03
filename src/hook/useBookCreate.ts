@@ -2,7 +2,7 @@ import { useState, useEffect, MouseEvent} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import { attemptBookCreateAction } from 'modules/redux/pages';
-import { searchBookInfoInterface } from 'modules/Interfaces';
+import * as Interfaces from 'modules/Interfaces';
 import GlobalAlert from 'lib/GlobalAlert';
 import * as API from 'lib/API';
 import axios from 'axios';
@@ -13,21 +13,24 @@ export default function useBookCreate() {
 
     const dispatch = useDispatch();
     const [bookSearchString, setBookSearchString] = useState('');
-    const [bookSearchResultItem, setBookSearchResultItem] = useState<searchBookInfoInterface[]>([]);
+    const [bookSearchResultItem, setBookSearchResultItem] = useState<Interfaces.searchBookInfoInterface[]>([]);
+
+    const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
     const __handleBookSearchButtonClick = (e: MouseEvent) => {
         e.preventDefault();
-
+        setIsLoading('loading');
         try {
             axios.get(`https://dapi.kakao.com/v3/search/book?target=title&query=${bookSearchString}`, {headers: {'Authorization':'KakaoAK 2f818df48b7f3e5ec3b2e81689df6506'}})
             .then(res => {
                 setBookSearchResultItem(res.data.documents);
             })
-          } catch (error) {
+        } catch (error) {
             GlobalAlert.thenLocationReload({
                 text: '문제가 발생 했습니다. 다시 시도해 주세요.'
             });
-          }
+        }
+        setIsLoading('success');
     }
 
     const __handleBookSearchInputCange = (e: string) => {
@@ -38,7 +41,7 @@ export default function useBookCreate() {
 
         const book_info = bookSearchResultItem[state_key];
 
-        book_info.isbn.split(' ').map( async (n:any,i:number) => {
+        book_info.isbn.split(' ').map( async (n:any, i:number) => {
             if(i === 1) {
                 const respone = await API.attemptBookExitsCheckRequest({book_uuid: n})
 
@@ -79,6 +82,7 @@ export default function useBookCreate() {
         bookSearchResultItem,
         bookSearchString,
         __handleClickBookServerCreate,
+        isLoading,
 
     };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ListSkeletonComponent,
     RecommendBooksListTable,
-    Pagination
+    Pagination,
 } from 'components/elements';
 import useRecommendBooksList from 'hook/useRecommendBooksList';
 
@@ -13,13 +13,16 @@ function RecommendBooksListPage() {
         __handlePaginate,
         listPageData,
         __handleClickDeleteButton,
+        isLoading,
     } = useRecommendBooksList();
 
     return (
         <>
             <ListSkeletonComponent
+
                 ListTable={
                     <RecommendBooksListTable
+                        isloading={isLoading}
                         items={booksListItems}
                         handleClickDeleteButton={__handleClickDeleteButton}
                     />

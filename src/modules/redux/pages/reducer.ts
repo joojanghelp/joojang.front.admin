@@ -448,7 +448,7 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
                 book_activity_list : {
-                    state: 'idle'
+                    state: 'loading'
                 },
                 delete_book_activity : state.books.delete_book_activity,
             }

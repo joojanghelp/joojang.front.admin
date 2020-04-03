@@ -132,7 +132,6 @@ export default function useUserPage() {
     } ,[state_user_list.state, state_user_info.state, state_user_active_update.state])
 
     useEffect(() => {
-        console.debug('mount?');
         __handleClickUserInfoConfirmButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [])

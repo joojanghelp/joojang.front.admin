@@ -1,13 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     ListSkeletonComponent,
     DefaultUserListTable,
     Pagination
 } from 'components/elements';
 import useUserPage from 'hook/useUserPage';
-import GlobalAlert from 'lib/GlobalAlert';
-
-import Swal from 'sweetalert2';
 
 function UsersPage() {
 

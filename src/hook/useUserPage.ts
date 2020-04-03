@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction, attemptGetUserInfoResetAction } from 'modules/redux/pages';
+import { attemptGetUserListAction, attemptUserActiveUpdateAction, attemptGetUserInfoResetAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import history from 'routes/History';
 import { useParams } from 'react-router-dom';
@@ -132,14 +132,9 @@ export default function useUserPage() {
     } ,[state_user_list.state, state_user_info.state, state_user_active_update.state])
 
     useEffect(() => {
-        // console.debug(pageSagaState);
-    }, [setIsLoading])
-
-
-    useEffect(() => {
-        // mount?
         console.debug('mount?');
         __handleClickUserInfoConfirmButton();
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [])
 
 

@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserListAction, attemptGetUserInfoAction, attemptUserActiveUpdateAction, attemptGetUserInfoResetAction } from 'modules/redux/pages';
+import { attemptGetUserInfoAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
-import history from 'routes/History';
 import { useParams } from 'react-router-dom';
 
 interface RouteParams {
@@ -54,11 +53,12 @@ export default function useUserPage() {
     }, [state_user_info])
 
     useEffect(() => {
-        // mount?
         if(params.user_uuid) {
             getUserInfo(params.user_uuid)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [])
+
     return {
         userInfoItems,
     };

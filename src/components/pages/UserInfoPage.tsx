@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import useUserInfo from 'hook/useUserInfo';
 import { InfoSkeletonComponent, UserInfoTable } from 'components/elements';
 

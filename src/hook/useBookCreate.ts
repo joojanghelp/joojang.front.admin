@@ -17,8 +17,7 @@ export default function useBookCreate() {
 
     const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
-    const __handleBookSearchButtonClick = (e: MouseEvent) => {
-        e.preventDefault();
+    const searchDaumBookApi = () => {
         setIsLoading('loading');
         try {
             axios.get(`https://dapi.kakao.com/v3/search/book?target=title&query=${bookSearchString}`, {headers: {'Authorization':'KakaoAK 2f818df48b7f3e5ec3b2e81689df6506'}})
@@ -33,8 +32,18 @@ export default function useBookCreate() {
         setIsLoading('success');
     }
 
+    const __handleBookSearchButtonClick = (e: MouseEvent) => {
+        e.preventDefault();
+
+        searchDaumBookApi();
+    }
+
     const __handleBookSearchInputCange = (e: string) => {
         setBookSearchString(e);
+    }
+
+    const __handleEnterKeyPress = () => {
+        searchDaumBookApi();
     }
 
     const __handleClickBookServerCreate = (state_key: number) => {
@@ -83,7 +92,7 @@ export default function useBookCreate() {
         bookSearchString,
         __handleClickBookServerCreate,
         isLoading,
-
+        __handleEnterKeyPress,
     };
 };
 

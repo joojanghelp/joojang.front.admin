@@ -12,6 +12,7 @@ function BookCreatePage() {
         __handleClickBookServerCreate,
         bookSearchString,
         isLoading,
+        __handleEnterKeyPress,
     } = useBookCreate();
     return (
         <>
@@ -22,6 +23,7 @@ function BookCreatePage() {
                             handleBookSearchButtonClick={__handleBookSearchButtonClick}
                             handleBookSearchInputCange={__handleBookSearchInputCange}
                             bookSearchString={bookSearchString}
+                            handleEnterKeyPress = { __handleEnterKeyPress }
                         />
                     </>
                 }

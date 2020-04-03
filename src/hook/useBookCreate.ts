@@ -19,16 +19,23 @@ export default function useBookCreate() {
 
     const searchDaumBookApi = () => {
         setIsLoading('loading');
-        try {
-            axios.get(`https://dapi.kakao.com/v3/search/book?target=title&query=${bookSearchString}`, {headers: {'Authorization':'KakaoAK 2f818df48b7f3e5ec3b2e81689df6506'}})
-            .then(res => {
-                setBookSearchResultItem(res.data.documents);
+        if(bookSearchString.length > 0) {
+            try {
+                axios.get(`https://dapi.kakao.com/v3/search/book?target=title&query=${bookSearchString}`, {headers: {'Authorization':'KakaoAK 2f818df48b7f3e5ec3b2e81689df6506'}})
+                .then(res => {
+                    setBookSearchResultItem(res.data.documents);
+                })
+            } catch (error) {
+                GlobalAlert.thenLocationReload({
+                    text: '문제가 발생 했습니다. 다시 시도해 주세요.'
+                });
+            }
+        } else {
+            GlobalAlert.default({
+                text: '검색어를 입력해 주세요.'
             })
-        } catch (error) {
-            GlobalAlert.thenLocationReload({
-                text: '문제가 발생 했습니다. 다시 시도해 주세요.'
-            });
         }
+
         setIsLoading('success');
     }
 

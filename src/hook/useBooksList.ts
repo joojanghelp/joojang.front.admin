@@ -1,18 +1,10 @@
-import { useState, useEffect, MouseEvent} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteRecommendBookAction} from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
-import GlobalAlert from 'lib/GlobalAlert';
-import * as API from 'lib/API';
-import axios from 'axios';
-
-
-
 import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-
 
 interface RouteParams {
     page_number: string;
@@ -85,6 +77,7 @@ export default function useBooksList() {
         dispatch(attemptGetBooksListAction({
             pageNumber: (params.page_number) ? params.page_number : '1'
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, []);
 
     useEffect(() => {
@@ -111,6 +104,7 @@ export default function useBooksList() {
                 pageNumber: (params.page_number) ? params.page_number : '1'
             }));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_add_recommend_book, state_delete_recommend_book])
 
     useEffect(() => {

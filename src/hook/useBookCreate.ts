@@ -1,9 +1,8 @@
 import { useState, useEffect, MouseEvent} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptGetUserInfoAction, attemptUserDataUpdateAction, attemptBookCreateAction } from 'modules/redux/pages';
-import { userDetailData, searchBookInfoInterface } from 'modules/Interfaces';
-import { useParams } from 'react-router-dom';
+import { attemptBookCreateAction } from 'modules/redux/pages';
+import { searchBookInfoInterface } from 'modules/Interfaces';
 import GlobalAlert from 'lib/GlobalAlert';
 import * as API from 'lib/API';
 import axios from 'axios';
@@ -42,7 +41,7 @@ export default function useBookCreate() {
 
         const book_info = bookSearchResultItem[state_key];
 
-        const tmp_idbn = book_info.isbn.split(' ').map( async (n:any,i:number) => {
+        book_info.isbn.split(' ').map( async (n:any,i:number) => {
             if(i === 1) {
                 const respone = await API.attemptBookExitsCheckRequest({book_uuid: n})
 

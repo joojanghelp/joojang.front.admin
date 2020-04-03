@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     ListSkeletonComponent,
     RecommendBooksListTable,
     Pagination
 } from 'components/elements';
 import useRecommendBooksList from 'hook/useRecommendBooksList';
-import GlobalAlert from 'lib/GlobalAlert';
 
 function RecommendBooksListPage() {
 

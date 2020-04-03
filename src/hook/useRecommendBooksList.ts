@@ -1,12 +1,9 @@
-import { useState, useEffect, MouseEvent} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import {attemptRecommendBookListAction, attemptDeleteRecommendBookAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
-import GlobalAlert from 'lib/GlobalAlert';
-import * as API from 'lib/API';
-import axios from 'axios';
 
 interface RouteParams {
     page_number: string;
@@ -49,6 +46,7 @@ export default function useRecommendBooksList() {
             pageNumber: (params.page_number) ? params.page_number : '1',
             gubun: (params.gubun) ? params.gubun : 'B11000'
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, []);
 
     useEffect(() => {
@@ -80,6 +78,7 @@ export default function useRecommendBooksList() {
                 gubun: (params.gubun) ? params.gubun : 'B11000'
             }));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_delete_recommend_book])
 
 

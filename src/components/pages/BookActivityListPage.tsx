@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     ListSkeletonComponent,
     BooksActivityListTable,
     Pagination
 } from 'components/elements';
 import useActivity from 'hook/useActivity';
-import GlobalAlert from 'lib/GlobalAlert';
 
 function BookActivityListPage() {
 
     const {
         booksActivityListItems,
         listPageData,
-        __handleClickActivityDeleteButton
+        __handleClickActivityDeleteButton,
+        __handlePaginate
     } = useActivity();
 
     return (
@@ -22,6 +22,12 @@ function BookActivityListPage() {
                     <BooksActivityListTable
                         items={booksActivityListItems}
                         handleClickActivityDeleteButton={__handleClickActivityDeleteButton}
+                    />
+                }
+                Pagination={
+                    <Pagination
+                    handlePaginate={__handlePaginate}
+                    listpagedata={listPageData}
                     />
                 }
             />

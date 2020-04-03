@@ -92,6 +92,7 @@ export default function useUserPage() {
         dispatch(attemptGetUserListAction({
             pageNumber: (params.page_number) ? params.page_number : '1'
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [params]);
 
     useEffect(() => {
@@ -104,6 +105,7 @@ export default function useUserPage() {
                 pageNumber: (params.page_number) ? params.page_number : '1'
             }));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_user_active_update]);
 
     return {
@@ -117,4 +119,3 @@ export default function useUserPage() {
         __handleUserActiveDeleteLink
     };
 };
-

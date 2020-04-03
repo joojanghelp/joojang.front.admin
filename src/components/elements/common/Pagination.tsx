@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import ReactPaginate from 'react-paginate';
 import {defaultPaginationData} from 'modules/Interfaces';
 

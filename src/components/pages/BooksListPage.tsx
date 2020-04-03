@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     ListSkeletonComponent,
     BooksListTable,
     Pagination
 } from 'components/elements';
 import useBooksList from 'hook/useBooksList';
-import GlobalAlert from 'lib/GlobalAlert';
 
 function BooksListPage() {
 

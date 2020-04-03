@@ -1,12 +1,9 @@
-import { useState, useEffect, MouseEvent} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import { attemptGetBookActivityListAction, attemptDeleteBookActivityAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
-import GlobalAlert from 'lib/GlobalAlert';
-import * as API from 'lib/API';
-import axios from 'axios';
 
 interface RouteParams {
     page_number: string;
@@ -40,14 +37,19 @@ export default function useBookCreate() {
         }));
     }
 
+    const __handlePaginate = () => {
+        console.debug('__handlePaginate');
+    }
+
     useEffect(() => {
-        if(dtate_delete_book_activity.state === "success") {
+        if(dtate_delete_book_activity.state === "success" && params.page_number && params.gubun) {
             dispatch(attemptGetBookActivityListAction({
                 pageNumber: (params.page_number) ? params.page_number : '1',
                 gubun: (params.gubun) ? params.gubun : 'C11110'
             }));
         }
-    }, [dtate_delete_book_activity])
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
+    }, [dtate_delete_book_activity.state])
 
     useEffect(() => {
         if(state_book_activity_list.state === 'success' && typeof state_book_activity_list.list !== undefined && state_book_activity_list.list) {
@@ -73,6 +75,7 @@ export default function useBookCreate() {
             pageNumber: (params.page_number) ? params.page_number : '1',
             gubun: (params.gubun) ? params.gubun : 'C11110'
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, []);
 
 
@@ -80,6 +83,7 @@ export default function useBookCreate() {
         booksActivityListItems,
         listPageData,
         __handleClickActivityDeleteButton,
+        __handlePaginate,
     };
 };
 

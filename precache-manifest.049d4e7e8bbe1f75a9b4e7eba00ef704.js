@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "754f0284893dbc8edc98ee1cf77b5618",
+    "revision": "f6188bfbe4ef28068c60e27806c4b1e6",
     "url": "/joojang.front.admin/index.html"
   },
   {
-    "revision": "024505a00d7b8babe095",
+    "revision": "32e445931aefa567386a",
     "url": "/joojang.front.admin/static/css/main.f527be85.chunk.css"
   },
   {
-    "revision": "adba165f238367c42422",
-    "url": "/joojang.front.admin/static/js/2.cfcbf53f.chunk.js"
+    "revision": "3cc05f19c9abfd9148c0",
+    "url": "/joojang.front.admin/static/js/2.887d3d5a.chunk.js"
   },
   {
-    "revision": "024505a00d7b8babe095",
-    "url": "/joojang.front.admin/static/js/main.1492529c.chunk.js"
+    "revision": "32e445931aefa567386a",
+    "url": "/joojang.front.admin/static/js/main.381d0ccc.chunk.js"
   },
   {
     "revision": "1ed591e5423df7c6e0de",

@@ -33,6 +33,9 @@ function Sidebar() {
                 <li className="nav-item">
                     <Link to="/users/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>회원 리스트</span></Link>
                 </li>
+                <li className="nav-item">
+                    <Link to="/books/activity/C11110/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>독서 활동 리스트</span></Link>
+                </li>
 
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider"></hr>

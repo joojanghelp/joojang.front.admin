@@ -10,6 +10,7 @@ export { default as DefaultUserListTable } from './table/DefaultUserListTable';
 export { default as BookSearchListTable } from './table/BookSearchListTable';
 export { default as BooksListTable } from './table/BooksListTable';
 export { default as RecommendBooksListTable } from './table/RecommendBooksListTable';
+export { default as BooksActivityListTable } from './table/BooksActivityListTable';
 
 
 export { default as Sidebar } from './common/Sidebar';

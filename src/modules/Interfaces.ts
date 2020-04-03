@@ -181,6 +181,36 @@ export interface booklistTypeServerResponse {
     prev_page: string;
     items: bookListItem[];
 }
+export interface activityListItem {
+    list_id: number,
+    list_uid: string,
+    book_id: number,
+    book_title: string,
+    book_thumbnail: string,
+    user_id: number,
+    user_name: string,
+    gubun: string,
+    gubun_name: string,
+    contents: string,
+    created_at_string: string,
+}
+export interface activitylistTypeServerResponse {
+    current_page: number;
+    first_page_url: string;
+    from: number;
+    last_page: string;
+    last_page_url: string;
+    next_page_url: string | null;
+    path: string;
+    per_page: number;
+    prev_page_url: string | null;
+    to: number;
+    total: number;
+    first_page: string;
+    next_page: string;
+    prev_page: string;
+    items: activityListItem[];
+}
 
 export interface siteBaseDataResponse {
     items: {
@@ -221,6 +251,11 @@ export interface getPageingListRequest {
     pageNumber: string;
 }
 
+export interface getGubunPageingListRequest {
+    pageNumber: string;
+    gubun: string;
+}
+
 export interface getUserInfoRequest {
     user_uuid: string;
 }
@@ -241,6 +276,10 @@ export interface addRecommendBookRequest {
 
 export interface deleteRecommendBookRequest {
     book_id: number;
+}
+
+export interface deleteBookActivityRequest {
+    activity_uuid: string;
 }
 
 export interface getRecommendRequest {
@@ -324,7 +363,15 @@ export interface pageState {
         add_recommend_book: {
             state: baseSagaStateType;
             message?: string;
-        }
+        },
+        book_activity_list: {
+            state: baseSagaStateType;
+            list?: activitylistTypeServerResponse
+        },
+        delete_book_activity: {
+            state: baseSagaStateType;
+            message?: string;
+        },
     }
 }
 

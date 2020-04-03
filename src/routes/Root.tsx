@@ -14,6 +14,7 @@ import {
     BookCreatePage,
     BooksListPage,
     RecommendBooksListPage,
+    BookActivityListPage,
 } from 'components/pages';
 
 import {LoadingSpinner} from 'components/elements';
@@ -93,6 +94,7 @@ const Root = ({
 
                     <Route path="/users/:page_number" exact={ true } component={ UsersPage } />
                     <Route path="/books/:page_number" exact={ true } component={ BooksListPage } />
+                    <Route path="/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
                     <Route path="/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
                     <Route path="/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
 

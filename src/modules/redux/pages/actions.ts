@@ -63,3 +63,17 @@ export const attemptDeleteRecommendBookAction = (payload: Interfaces.deleteRecom
         payload
     };
 }
+
+export const attemptGetBookActivityListAction = (payload: Interfaces.getGubunPageingListRequest) => {
+    return {
+        type: ActionType.GET_BOOKS_ACTIVITY_LIST_REQUEST,
+        payload
+    };
+}
+
+export const attemptDeleteBookActivityAction = (payload: Interfaces.deleteBookActivityRequest) => {
+    return {
+        type: ActionType.DELETE_BOOKS_ACTIVITY_LIST_REQUEST,
+        payload
+    };
+}

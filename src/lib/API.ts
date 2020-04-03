@@ -48,3 +48,12 @@ export function attemptAddRecommendBookRequest(payload: Interfaces.addRecommendB
 export function attemptDeleteRecommendBookRequest(payload: Interfaces.deleteRecommendBookRequest): Promise<Interfaces.defaultServerResponse> {
     return GlobalAxios.init(true, 'delete', `/api/v1/admin/books/recommend`, {params:payload});
 };
+
+
+export function attemptGetBookActivityListRequest(payload: Interfaces.getGubunPageingListRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'get', `/api/v1/admin/books/activity/${payload.gubun}/page/${payload.pageNumber}`, payload);
+};
+
+export function attemptDeleteBookActivityRequest(payload: Interfaces.deleteBookActivityRequest): Promise<Interfaces.defaultServerResponse> {
+    return GlobalAxios.init(true, 'delete', `/api/v1/admin/books/activity`, {params:payload});
+};

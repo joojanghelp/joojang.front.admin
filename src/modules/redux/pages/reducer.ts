@@ -39,6 +39,12 @@ const initialState: PageState = {
         add_recommend_book : {
             state: 'idle',
         },
+        book_activity_list : {
+            state: 'idle',
+        },
+        delete_book_activity : {
+            state: 'idle',
+        }
     }
 }
 
@@ -54,7 +60,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         }
     },
     [ActionType.GET_USER_LIST_SUCCESS](state: PageState, action: Action<Interfaces.listTypeServerResponse>) {
@@ -69,7 +74,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.GET_USER_LIST_ERROR](state: PageState, action: Action<Interfaces.listTypeServerResponse>) {
@@ -83,7 +87,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
 
@@ -98,7 +101,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.GET_USER_INFO_SUCCESS](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -113,7 +115,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.GET_USER_INFO_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -127,7 +128,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 user_data_update: state.users.user_data_update,
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.USER_DATA_UPDATE_SUCCESS](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -141,7 +141,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 },
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.USER_DATA_UPDATE_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -155,7 +154,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 },
                 user_active_update : state.users.user_active_update,
             },
-            // books: state.books
         };
     },
     [ActionType.USER_ACTIVE_UPDATE_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -169,7 +167,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'loading'
                 },
             },
-            // books: state.books
         };
     },
     [ActionType.USER_ACTIVE_UPDATE_SUCCESS](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -183,7 +180,6 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'success'
                 },
             },
-            // books: state.books
         };
     },
     [ActionType.USER_ACTIVE_UPDATE_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
@@ -197,13 +193,11 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'failure'
                 },
             },
-            // books: state.books
         };
     },
     [ActionType.BOOK_CREATE_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : {
                     state: 'loading'
@@ -212,13 +206,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.BOOK_CREATE_SUCCESS](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : {
                     state: 'success',
@@ -228,13 +223,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.BOOK_CREATE_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            users: state.users,
             books: {
                 book_create : {
                     state: 'failure'
@@ -243,13 +239,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_BOOKS_LIST_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : {
@@ -258,13 +255,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_BOOKS_LIST_SUCCESS](state: PageState, action: Action<Interfaces.booklistTypeServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : {
@@ -274,13 +272,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_BOOKS_LIST_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : {
@@ -289,13 +288,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 recommend_book_list : state.books.recommend_book_list,
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_RECOMMEND_BOOKS_LIST_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -304,13 +304,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 },
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_RECOMMEND_BOOKS_LIST_SUCCESS](state: PageState, action: Action<Interfaces.RecommendlistTypeServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -320,13 +321,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 },
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.GET_RECOMMEND_BOOKS_LIST_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -335,13 +337,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 },
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.DELETE_RECOMMEND_BOOKS_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -350,13 +353,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'loading'
                 },
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.DELETE_RECOMMEND_BOOKS_SUCCESS](state: PageState, action: Action<Interfaces.RecommendlistTypeServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -365,13 +369,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'success'
                 },
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.DELETE_RECOMMEND_BOOKS_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -380,13 +385,14 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                     state: 'failure'
                 },
                 add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.ADD_RECOMMEND_BOOKS_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -394,14 +400,15 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : {
                     'state': 'loading'
-                }
+                },
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.ADD_RECOMMEND_BOOKS_SUCCESS](state: PageState, action: Action<Interfaces.RecommendlistTypeServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -409,14 +416,15 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : {
                     'state': 'success'
-                }
+                },
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
             }
         };
     },
     [ActionType.ADD_RECOMMEND_BOOKS_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,
-            // users: state.users,
             books: {
                 book_create : state.books.book_create,
                 book_list : state.books.book_list,
@@ -424,10 +432,112 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
                 delete_recommend_book : state.books.delete_recommend_book,
                 add_recommend_book : {
                     'state': 'failure'
-                }
+                },
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : state.books.delete_book_activity,
+            }
+        };
+    },
+    [ActionType.GET_BOOKS_ACTIVITY_LIST_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : {
+                    state: 'idle'
+                },
+                delete_book_activity : state.books.delete_book_activity,
+            }
+        };
+    },
+    [ActionType.GET_BOOKS_ACTIVITY_LIST_SUCCESS](state: PageState, action: Action<Interfaces.activitylistTypeServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : {
+                    state: 'success',
+                    list:action.payload
+                },
+                delete_book_activity : state.books.delete_book_activity,
+            }
+        };
+    },
+    [ActionType.GET_BOOKS_ACTIVITY_LIST_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : {
+                    state: 'failure'
+                },
+                delete_book_activity : state.books.delete_book_activity,
+            }
+        };
+    },
+    [ActionType.DELETE_BOOKS_ACTIVITY_LIST_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : {
+                    state: 'loading'
+                },
+            }
+        };
+    },
+    [ActionType.DELETE_BOOKS_ACTIVITY_LIST_SUCCESS](state: PageState, action: Action<Interfaces.activitylistTypeServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : {
+                    state: 'success',
+                },
+            }
+        };
+    },
+    [ActionType.DELETE_BOOKS_ACTIVITY_LIST_ERROR](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
+        return {
+            ...state,
+            books: {
+                book_create : state.books.book_create,
+                book_list : state.books.book_list,
+                recommend_book_list : state.books.recommend_book_list,
+                delete_recommend_book : state.books.delete_recommend_book,
+                add_recommend_book : state.books.add_recommend_book,
+                book_activity_list : state.books.book_activity_list,
+                delete_book_activity : {
+                    state: 'failure'
+                },
             }
         };
     }
+
+
+
 });
 
 export default pagesActionReducer;

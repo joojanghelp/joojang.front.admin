@@ -38,7 +38,7 @@ export default function useBookCreate() {
     }
 
     const __handlePaginate = () => {
-        console.debug('__handlePaginate');
+        console.debug('::: __handlePaginate :::');
     }
 
     useEffect(() => {

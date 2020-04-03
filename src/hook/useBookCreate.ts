@@ -24,7 +24,6 @@ export default function useBookCreate() {
                 setBookSearchResultItem(res.data.documents);
             })
           } catch (error) {
-            console.debug('get book search error', error);
             GlobalAlert.thenLocationReload({
                 text: '문제가 발생 했습니다. 다시 시도해 주세요.'
             });
@@ -36,8 +35,6 @@ export default function useBookCreate() {
     }
 
     const __handleClickBookServerCreate = (state_key: number) => {
-
-        console.debug(bookSearchResultItem[state_key]);
 
         const book_info = bookSearchResultItem[state_key];
 
@@ -65,7 +62,6 @@ export default function useBookCreate() {
     }
 
     useEffect(() => {
-        console.debug(bookSearchResultItem);
     }, [bookSearchResultItem])
 
     useEffect(() => {

@@ -68,7 +68,6 @@ class GlobalAxios {
                         // console.debug(errorMessage.toString());
                         // 어떻게 할것 인지?
                     } else {
-                        console.debug(2);
                         resolve({
                             state: false,
                             message: (error.response.data.error_message) ? error.response.data.error_message : "처리중 문제가 발생했습니다."

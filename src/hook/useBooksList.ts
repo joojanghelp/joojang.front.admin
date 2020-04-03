@@ -34,7 +34,7 @@ export default function useBooksList() {
     });
 
     const __handlePaginate = () => {
-        console.debug('__handlePaginate');
+        console.debug('::: __handlePaginate :::');
     }
 
     const __handleClickRecommendAddButton = async (book_id: number) => {

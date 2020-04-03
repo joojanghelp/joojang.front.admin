@@ -52,7 +52,6 @@ export default function useUserPage() {
     }
 
     const __handleUserActiveUpdateLink = (user_uuid: string, active: 'Y' | 'N') => {
-        // console.debug('__handleUserActiveUpdateLink', user_uuid);
         dispatch(attemptUserActiveUpdateAction({
             user_uuid: user_uuid,
             active: active

@@ -40,7 +40,7 @@ const Root = ({
 
     useEffect(() => {
         if(!Helper.getAccessToken()) {
-            if(router_state.location.pathname !== '/login') {
+            if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
                 history.push(process.env.PUBLIC_URL + '/login');
             }
         }
@@ -51,7 +51,7 @@ const Root = ({
         setIsLoading(true);
         if(!Helper.getAccessToken()) {
             setIsLoading(false);
-            if(router_state.location.pathname !== '/login') {
+            if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
                 history.push(process.env.PUBLIC_URL + '/login');
             }
         } else {

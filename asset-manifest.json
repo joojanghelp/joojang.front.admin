@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/joojang.front.admin/static/css/main.f527be85.chunk.css",
-    "main.js": "/joojang.front.admin/static/js/main.b6644a58.chunk.js",
-    "main.js.map": "/joojang.front.admin/static/js/main.b6644a58.chunk.js.map",
+    "main.js": "/joojang.front.admin/static/js/main.2711a34c.chunk.js",
+    "main.js.map": "/joojang.front.admin/static/js/main.2711a34c.chunk.js.map",
     "runtime-main.js": "/joojang.front.admin/static/js/runtime-main.68f396b1.js",
     "runtime-main.js.map": "/joojang.front.admin/static/js/runtime-main.68f396b1.js.map",
     "static/js/2.ccc51dae.chunk.js": "/joojang.front.admin/static/js/2.ccc51dae.chunk.js",
     "static/js/2.ccc51dae.chunk.js.map": "/joojang.front.admin/static/js/2.ccc51dae.chunk.js.map",
     "index.html": "/joojang.front.admin/index.html",
-    "precache-manifest.ba2af4f3168b14a1ec04fe9d620c6d27.js": "/joojang.front.admin/precache-manifest.ba2af4f3168b14a1ec04fe9d620c6d27.js",
+    "precache-manifest.c18fd432f58744ad370aa321b3f38d1d.js": "/joojang.front.admin/precache-manifest.c18fd432f58744ad370aa321b3f38d1d.js",
     "service-worker.js": "/joojang.front.admin/service-worker.js",
     "static/css/main.f527be85.chunk.css.map": "/joojang.front.admin/static/css/main.f527be85.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.68f396b1.js",
     "static/js/2.ccc51dae.chunk.js",
     "static/css/main.f527be85.chunk.css",
-    "static/js/main.b6644a58.chunk.js"
+    "static/js/main.2711a34c.chunk.js"
   ]
 }

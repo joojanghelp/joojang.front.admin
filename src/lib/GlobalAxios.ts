@@ -21,7 +21,6 @@ export interface tokenRefreshInterface {
     message?: string;
 }
 
-
 export interface apiRequest {
     authType: boolean;
     method: 'get'|'post'|'delete'|'put';
@@ -29,8 +28,6 @@ export interface apiRequest {
     payload: any
 
 }
-
-
 
 const promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
     return new Promise<T | any>((resolve, reject) => {
@@ -43,7 +40,7 @@ const promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
         .catch(error => {
             if (error.response) {
 
-                if(error.response.status === 401) {
+                if(error.response.status === 401 || error.response.status === 403) {
                     Helper.removeLoginInfo();
                     GlobalAlert.default({
                         text: error.response.data.error_message,

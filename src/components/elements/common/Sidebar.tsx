@@ -8,7 +8,7 @@ function Sidebar() {
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 {/* <!-- Sidebar - Brand --> */}
-                <Link to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
+                <Link to={process.env.PUBLIC_URL + "/"} className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fas fa-laugh-wink"></i>
                     </div>
@@ -20,7 +20,7 @@ function Sidebar() {
 
                 {/* <!-- Nav Item - Dashboard --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link" ><i className="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link" ><i className="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}
@@ -31,10 +31,10 @@ function Sidebar() {
 
                 {/* <!-- Nav Item - Pages Collapse Menu --> */}
                 <li className="nav-item">
-                    <Link to="/joojang.front.admin/users/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>회원 리스트</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/users/1"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>회원 리스트</span></Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/joojang.front.admin/books/activity/C11110/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>독서 활동 리스트</span></Link>
+                    <Link to={process.env.PUBLIC_URL +  '/books/activity/C11110/1'} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>독서 활동 리스트</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}
@@ -43,13 +43,13 @@ function Sidebar() {
                 {/* <!-- Heading --> */}
                 <div className="sidebar-heading"> 책 </div>
                 <li className="nav-item">
-                    <Link to="/joojang.front.admin/books/recommend/B11000/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>추천 도서</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/books/recommend/B11000/1"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>추천 도서</span></Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/joojang.front.admin/book/create" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 등록</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/book/create"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 등록</span></Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/joojang.front.admin/books/1" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 리스트</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/books/1"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>책 리스트</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}

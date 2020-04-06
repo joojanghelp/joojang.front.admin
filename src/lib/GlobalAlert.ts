@@ -34,7 +34,7 @@ class GlobalAlert {
         this.SwalAlert.fire({
             text: alertOption.text,
         }).then(() => {
-            history.push(push_target);
+            history.push(process.env.PUBLIC_URL + push_target);
         });
     };
 

@@ -10,7 +10,7 @@ function DefaultPage() {
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 {/* <!-- Sidebar - Brand --> */}
-                <Link to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
+                <Link to={process.env.PUBLIC_URL + "/"} className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fas fa-laugh-wink"></i>
                     </div>
@@ -22,7 +22,7 @@ function DefaultPage() {
 
                 {/* <!-- Nav Item - Dashboard --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link" ><i className="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link" ><i className="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}
@@ -33,26 +33,26 @@ function DefaultPage() {
 
                 {/* <!-- Nav Item - Pages Collapse Menu --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>Components</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><i className="fas fa-fw fa-cog"></i><span>Components</span></Link>
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Custom Components:</h6>
-                            <Link to="/" className="collapse-item" href="{null}">Buttons</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Cards</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Buttons</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Cards</Link>
                         </div>
                     </div>
                 </li>
 
                 {/* <!-- Nav Item - Utilities Collapse Menu --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> <i className="fas fa-fw fa-wrench"></i> <span>Utilities</span> </Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> <i className="fas fa-fw fa-wrench"></i> <span>Utilities</span> </Link>
                     <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Custom Utilities:</h6>
-                            <Link to="/" className="collapse-item" href="{null}">Colors</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Borders</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Animations</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Other</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Colors</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Borders</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Animations</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Other</Link>
                         </div>
                     </div>
                 </li>
@@ -65,29 +65,29 @@ function DefaultPage() {
 
                 {/* <!-- Nav Item - Pages Collapse Menu --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> <i className="fas fa-fw fa-folder"></i> <span>Pages</span> </Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> <i className="fas fa-fw fa-folder"></i> <span>Pages</span> </Link>
                     <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Login Screens:</h6>
-                            <Link to="/" className="collapse-item" href="{null}">Login</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Register</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Forgot Password</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Login</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Register</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Forgot Password</Link>
                             <div className="collapse-divider"></div>
                             <h6 className="collapse-header">Other Pages:</h6>
-                            <Link to="/" className="collapse-item" href="{null}">404 Page</Link>
-                            <Link to="/" className="collapse-item" href="{null}">Blank Page</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">404 Page</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="collapse-item" href="{null}">Blank Page</Link>
                         </div>
                     </div>
                 </li>
 
                 {/* <!-- Nav Item - Charts --> */}
                 <li className="nav-item">
-                    <Link to="/" className="nav-link" href="{null}"> <i className="fas fa-fw fa-chart-area"></i> <span>Charts</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link" href="{null}"> <i className="fas fa-fw fa-chart-area"></i> <span>Charts</span></Link>
                 </li>
 
                 {/* <!-- Nav Item - Tables --> */}
                 <li className="nav-item active">
-                    <Link to="/" className="nav-link" href="{null}"> <i className="fas fa-fw fa-table"></i> <span>Tables</span></Link>
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link" href="{null}"> <i className="fas fa-fw fa-table"></i> <span>Tables</span></Link>
                 </li>
 
                 {/* <!-- Divider --> */}
@@ -132,7 +132,7 @@ function DefaultPage() {
 
                             {/* <!-- Nav Item - Search Dropdown (Visible Only XS) --> */}
                             <li className="nav-item dropdown no-arrow d-sm-none">
-                                <Link to="/" className="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fas fa-search fa-fw"></i> </Link>
+                                <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fas fa-search fa-fw"></i> </Link>
                                 {/* <!-- Dropdown - Messages --> */}
                                 <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                     <form className="form-inline mr-auto w-100 navbar-search">
@@ -150,7 +150,7 @@ function DefaultPage() {
 
                             {/* <!-- Nav Item - Alerts --> */}
                             <li className="nav-item dropdown no-arrow mx-1">
-                                <Link to="/" className="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="fas fa-bell fa-fw"></i>
                                     {/* <!-- Counter - Alerts --> */}
                                     <span className="badge badge-danger badge-counter">3+</span>
@@ -158,7 +158,7 @@ function DefaultPage() {
                                 {/* <!-- Dropdown - Alerts --> */}
                                 <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 className="dropdown-header">Alerts Center</h6>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="mr-3">
                                             <div className="icon-circle bg-primary"> <i className="fas fa-file-alt text-white"></i> </div>
                                         </div>
@@ -167,7 +167,7 @@ function DefaultPage() {
                                             <span className="font-weight-bold">A new monthly report is ready to download!</span>
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="mr-3">
                                             <div className="icon-circle bg-success"> <i className="fas fa-donate text-white"></i> </div>
                                         </div>
@@ -176,7 +176,7 @@ function DefaultPage() {
                                             $290.29 has been deposited into your account!
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="mr-3">
                                             <div className="icon-circle bg-warning">
                                                 <i className="fas fa-exclamation-triangle text-white"></i>
@@ -187,13 +187,13 @@ function DefaultPage() {
                                             Spending Alert: We've noticed unusually high spending for your account.
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item text-center small text-gray-500" href="{null}">Show All Alerts</Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item text-center small text-gray-500" href="{null}">Show All Alerts</Link>
                                 </div>
                             </li>
 
                             {/* <!-- Nav Item - Messages --> */}
                             <li className="nav-item dropdown no-arrow mx-1">
-                                <Link to="/" className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="fas fa-envelope fa-fw"></i>
                                     {/* <!-- Counter - Messages --> */}
                                     <span className="badge badge-danger badge-counter">7</span>
@@ -201,7 +201,7 @@ function DefaultPage() {
                                 {/* <!-- Dropdown - Messages --> */}
                                 <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                                     <h6 className="dropdown-header"> Message Center </h6>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="dropdown-list-image mr-3">
                                             <img className="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt=""/>
                                             <div className="status-indicator bg-success"></div>
@@ -211,7 +211,7 @@ function DefaultPage() {
                                             <div className="small text-gray-500">Emily Fowler · 58m</div>
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="dropdown-list-image mr-3">
                                             <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt=""/>>
                                             <div className="status-indicator"></div>
@@ -221,7 +221,7 @@ function DefaultPage() {
                                             <div className="small text-gray-500">Jae Chun · 1d</div>
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="dropdown-list-image mr-3">
                                             <img className="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt=""/>
                                             <div className="status-indicator bg-warning"></div>
@@ -231,7 +231,7 @@ function DefaultPage() {
                                             <div className="small text-gray-500">Morgan Alvarez · 2d</div>
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                         <div className="dropdown-list-image mr-3">
                                             <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt=""/>
                                             <div className="status-indicator bg-success"></div>
@@ -241,7 +241,7 @@ function DefaultPage() {
                                             <div className="small text-gray-500">Chicken the Dog · 2w</div>
                                         </div>
                                     </Link>
-                                    <Link to="/" className="dropdown-item text-center small text-gray-500" href="{null}">Read More Messages</Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item text-center small text-gray-500" href="{null}">Read More Messages</Link>
                                 </div>
                             </li>
 
@@ -249,17 +249,17 @@ function DefaultPage() {
 
                             {/* <!-- Nav Item - User Information --> */}
                             <li className="nav-item dropdown no-arrow">
-                                <Link to="/" className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
                                     <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt=""/>
                                 </Link>
                                 {/* <!-- Dropdown - User Information --> */}
                                 <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <Link to="/" className="dropdown-item" href="{null}"> <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile </Link>
-                                    <Link to="/" className="dropdown-item" href="{null}"> <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings </Link>
-                                    <Link to="/" className="dropdown-item" href="{null}"> <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log </Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item" href="{null}"> <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile </Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item" href="{null}"> <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings </Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item" href="{null}"> <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log </Link>
                                     <div className="dropdown-divider"></div>
-                                    <Link to="/" className="dropdown-item" data-toggle="modal" data-target="#logoutModal"> <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout </Link>
+                                    <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item" data-toggle="modal" data-target="#logoutModal"> <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout </Link>
                                 </div>
                             </li>
 
@@ -273,7 +273,7 @@ function DefaultPage() {
 
                         {/* <!-- Page Heading --> */}
                         <h1 className="h3 mb-2 text-gray-800">Tables</h1>
-                        <p className="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <Link to="/" href="https://datatables.net">official DataTables documentation</Link>.</p>
+                        <p className="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <Link to={process.env.PUBLIC_URL + "/"} href="https://datatables.net">official DataTables documentation</Link>.</p>
 
                         {/* <!-- DataTales Example --> */}
                         <div className="card shadow mb-4">

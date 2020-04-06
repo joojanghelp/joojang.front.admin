@@ -40,8 +40,8 @@ const Root = ({
 
     useEffect(() => {
         if(!Helper.getAccessToken()) {
-            if(router_state.location.pathname !== '/login') {
-                history.push('/joojang.front.admin/login');
+            if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
+                history.push(process.env.PUBLIC_URL + '/login');
             }
         }
     }, [router_state])
@@ -51,8 +51,8 @@ const Root = ({
         setIsLoading(true);
         if(!Helper.getAccessToken()) {
             setIsLoading(false);
-            if(router_state.location.pathname !== '/login') {
-                history.push('/joojang.front.admin/login');
+            if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
+                history.push(process.env.PUBLIC_URL + '/login');
             }
         } else {
             dispatch(getRootDataAction());
@@ -78,22 +78,22 @@ const Root = ({
     return (
             <Router history={ Routerhistory }>
                 <Switch>
-                    <Route path="/joojang.front.admin/" exact={ true } component={ UsersPage } />
-                    <Route path="/joojang.front.admin/blank" exact={ true } component={ BlankPage } />
+                    <Route path={process.env.PUBLIC_URL + "/"} exact={ true } component={ UsersPage } />
+                    <Route path={process.env.PUBLIC_URL + "/blank"} exact={ true } component={ BlankPage } />
 
-                    <Route path="/joojang.front.admin/login" exact={ true } component={ LoginPage } />
-                    <Route path="/joojang.front.admin/book/create" exact={ true } component={ BookCreatePage } />
+                    <Route path={process.env.PUBLIC_URL + "/login"} exact={ true } component={ LoginPage } />
+                    <Route path={process.env.PUBLIC_URL + "/book/create"} exact={ true } component={ BookCreatePage } />
 
-                    <Route path="/joojang.front.admin/users/:page_number" exact={ true } component={ UsersPage } />
-                    <Route path="/joojang.front.admin/books/:page_number" exact={ true } component={ BooksListPage } />
-                    <Route path="/joojang.front.admin/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
-                    <Route path="/joojang.front.admin/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
-                    <Route path="/joojang.front.admin/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
-                    <Route path="/joojang.front.admin/user/:user_uuid/info" exact={ true } component={ UserInfoPage } />
+                    <Route path={process.env.PUBLIC_URL + "/users/:page_number"} exact={ true } component={ UsersPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/:page_number"} exact={ true } component={ BooksListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/activity/:gugun/:page_number"} exact={ true } component={ BookActivityListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/recommend/:gubun/:page_number"} exact={ true } component={ RecommendBooksListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/user/:user_uuid/detail"} exact={ true } component={ UserDetail } />
+                    <Route path={process.env.PUBLIC_URL + "/user/:user_uuid/info"} exact={ true } component={ UserInfoPage } />
 
 
-                    <Route path="/test" exact={ true } component={ TestPage } />
-                    <Redirect path="*" to="/joojang.front.admin/login" />
+                    <Route path={process.env.PUBLIC_URL + "/test"} exact={ true } component={ TestPage } />
+                    <Redirect path="*" to={process.env.PUBLIC_URL + "/login"} />
                 </Switch>
             </Router>
         );

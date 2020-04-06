@@ -45,7 +45,7 @@ const promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
                     GlobalAlert.default({
                         text: error.response.data.error_message,
                     });
-                    history.push('/joojang.front.admin/login');
+                    history.push(process.env.PUBLIC_URL + '/login');
                 }
 
                 const errorMessage = error.response.data.error_message;

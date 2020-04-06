@@ -1,6 +1,6 @@
 {
-  "homepage": "https://joojanghelp.github.io/joojang.front.admin",
   "name": "joojang.front.admin",
+  "homepage": "https://joojanghelp.github.io/joojang.front.admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

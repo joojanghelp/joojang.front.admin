@@ -5,7 +5,7 @@ function TopbarAlerts() {
     return (
         <>
             <li className="nav-item dropdown no-arrow mx-1">
-                    <Link to="/" className="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-bell fa-fw"></i>
                         {/* <!-- Counter - Alerts --> */}
                         <span className="badge badge-danger badge-counter">3+</span>
@@ -13,7 +13,7 @@ function TopbarAlerts() {
                     {/* <!-- Dropdown - Alerts --> */}
                     <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                         <h6 className="dropdown-header">Alerts Center</h6>
-                        <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                        <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                             <div className="mr-3">
                                 <div className="icon-circle bg-primary"> <i className="fas fa-file-alt text-white"></i> </div>
                             </div>
@@ -22,7 +22,7 @@ function TopbarAlerts() {
                                 <span className="font-weight-bold">A new monthly report is ready to download!</span>
                             </div>
                         </Link>
-                        <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                        <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                             <div className="mr-3">
                                 <div className="icon-circle bg-success"> <i className="fas fa-donate text-white"></i> </div>
                             </div>
@@ -31,7 +31,7 @@ function TopbarAlerts() {
                                 $290.29 has been deposited into your account!
                             </div>
                         </Link>
-                        <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                        <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                             <div className="mr-3">
                                 <div className="icon-circle bg-warning">
                                     <i className="fas fa-exclamation-triangle text-white"></i>
@@ -42,7 +42,7 @@ function TopbarAlerts() {
                                 Spending Alert: We've noticed unusually high spending for your account.
                             </div>
                         </Link>
-                        <Link to="/" className="dropdown-item text-center small text-gray-500" href="{null}">Show All Alerts</Link>
+                        <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item text-center small text-gray-500" href="{null}">Show All Alerts</Link>
                     </div>
                 </li>
         </>

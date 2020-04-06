@@ -25,7 +25,7 @@ function Topbar() {
 
                     {/* <!-- Nav Item - Search Dropdown (Visible Only XS) --> */}
                     <li className="nav-item dropdown no-arrow d-sm-none">
-                        <Link to="/" className="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fas fa-search fa-fw"></i> </Link>
+                        <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fas fa-search fa-fw"></i> </Link>
                         {/* <!-- Dropdown - Messages --> */}
                         <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                             <form className="form-inline mr-auto w-100 navbar-search">

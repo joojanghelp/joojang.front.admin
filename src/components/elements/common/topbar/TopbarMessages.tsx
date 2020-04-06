@@ -5,7 +5,7 @@ function TopbarMessages() {
     return (
         <>
         <li className="nav-item dropdown no-arrow mx-1">
-                        <Link to="/" className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <Link to={process.env.PUBLIC_URL + "/"} className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fas fa-envelope fa-fw"></i>
                             {/* <!-- Counter - Messages --> */}
                             <span className="badge badge-danger badge-counter">7</span>
@@ -13,7 +13,7 @@ function TopbarMessages() {
                         {/* <!-- Dropdown - Messages --> */}
                         <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                             <h6 className="dropdown-header"> Message Center </h6>
-                            <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                            <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                 <div className="dropdown-list-image mr-3">
                                     <img className="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt=""/>
                                     <div className="status-indicator bg-success"></div>
@@ -23,7 +23,7 @@ function TopbarMessages() {
                                     <div className="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </Link>
-                            <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                            <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                 <div className="dropdown-list-image mr-3">
                                     <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt=""/>>
                                     <div className="status-indicator"></div>
@@ -33,7 +33,7 @@ function TopbarMessages() {
                                     <div className="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </Link>
-                            <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                            <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                 <div className="dropdown-list-image mr-3">
                                     <img className="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt=""/>
                                     <div className="status-indicator bg-warning"></div>
@@ -43,7 +43,7 @@ function TopbarMessages() {
                                     <div className="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </Link>
-                            <Link to="/" className="dropdown-item d-flex align-items-center" href="{null}">
+                            <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item d-flex align-items-center" href="{null}">
                                 <div className="dropdown-list-image mr-3">
                                     <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt=""/>
                                     <div className="status-indicator bg-success"></div>
@@ -53,7 +53,7 @@ function TopbarMessages() {
                                     <div className="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </Link>
-                            <Link to="/" className="dropdown-item text-center small text-gray-500" href="{null}">Read More Messages</Link>
+                            <Link to={process.env.PUBLIC_URL + "/"} className="dropdown-item text-center small text-gray-500" href="{null}">Read More Messages</Link>
                         </div>
                     </li>
         </>

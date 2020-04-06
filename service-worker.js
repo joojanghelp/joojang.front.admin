@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/joojang.front.admin/precache-manifest.d0affd2ea89f986c9b5a355cb7ba6b9f.js"
+  "/joojang.front.admin/precache-manifest.4d68b814dde0046931aa100957373bf4.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -3,7 +3,6 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import * as Helper from 'lib/Helper';
 import history from 'routes/History';
 import { useDispatch, useSelector } from 'react-redux';
-import GlobalAxios from 'lib/GlobalAxios';
 
 import {
     TestPage,
@@ -50,22 +49,14 @@ const Root = ({
     // TODO: 소스 정리 필요.
     useEffect(() => {
         setIsLoading(true);
-        const fetchData = async () => {
-            if(Helper.getRefreshToken()) {
-                const refresh_token =  await GlobalAxios.refresh_token()
-                if(refresh_token) {
-                    dispatch(getRootDataAction());
-                    // setIsLoading(false);
-                } else {
-                    setIsLoading(false);
-                    history.push('/joojang.front.admin/login');
-                }
-            } else {
-                setIsLoading(false);
+        if(!Helper.getAccessToken()) {
+            setIsLoading(false);
+            if(router_state.location.pathname !== '/login') {
                 history.push('/joojang.front.admin/login');
             }
-        };
-        fetchData();
+        } else {
+            dispatch(getRootDataAction());
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 

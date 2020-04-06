@@ -21,144 +21,122 @@ export interface tokenRefreshInterface {
     message?: string;
 }
 
-class GlobalAxios {
 
-    defaultAxiosinstance: AxiosInstance;
+export interface apiRequest {
+    authType: boolean;
+    method: 'get'|'post'|'delete'|'put';
+    endpoint: string;
+    payload: any
 
-    user_access_token: string = '';
+}
 
-    constructor() {
 
-        const defaultAxiosinstance: AxiosInstance = axios.create({
-            baseURL: process.env.REACT_APP_API_URL,
-            timeout: 20000,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Request-Client-Type": "A01001",
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                // "Authorization" : "Bearer " + this.user_access_token,
-            }
-        });
 
-        this.defaultAxiosinstance = defaultAxiosinstance;
-    }
+const promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
+    return new Promise<T | any>((resolve, reject) => {
+        axiosPromise.then(response => {
+            resolve({
+                state: true,
+                data: response.data
+            });
+        })
+        .catch(error => {
+            if (error.response) {
 
-    promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
-        return new Promise<T | any>((resolve, reject) => {
-            axiosPromise.then(response => {
-                resolve({
-                    state: true,
-                    data: response.data
-                });
-            })
-            .catch(error => {
-                if (error.response) {
-
-                    if(error.response.status === 401) {
-                        Helper.removeLoginInfo();
-                        GlobalAlert.default({
-                            text: error.response.data.error_message,
-                        });
-                        history.push('/joojang.front.admin/login');
-                    }
-
-                    const errorMessage = error.response.data.error_message;
-                    if(typeof errorMessage === 'object') {
-                        // console.debug(errorMessage.toString());
-                        // 어떻게 할것 인지?
-                    } else {
-                        resolve({
-                            state: false,
-                            message: (error.response.data.error_message) ? error.response.data.error_message : "처리중 문제가 발생했습니다."
-                        });
-                    }
-                } else if (error.request) {
-                    resolve({
-                        status: 444,
-                        message: "서버와의 통신중 문제가 발생했습니다."
+                if(error.response.status === 401) {
+                    Helper.removeLoginInfo();
+                    GlobalAlert.default({
+                        text: error.response.data.error_message,
                     });
+                    history.push('/joojang.front.admin/login');
+                }
+
+                const errorMessage = error.response.data.error_message;
+                if(typeof errorMessage === 'object') {
+                    // console.debug(errorMessage.toString());
+                    // 어떻게 할것 인지?
                 } else {
                     resolve({
-                        status: 417,
-                        message: "알수 없는 에러 입니다."
+                        state: false,
+                        message: (error.response.data.error_message) ? error.response.data.error_message : "처리중 문제가 발생했습니다."
                     });
                 }
-            });
+            } else if (error.request) {
+                resolve({
+                    status: 444,
+                    message: "서버와의 통신중 문제가 발생했습니다."
+                });
+            } else {
+                resolve({
+                    status: 417,
+                    message: "알수 없는 에러 입니다."
+                });
+            }
         });
-    };
+    });
+};
 
-    error(message: string): never {
-        throw new Error(message);
-    };
+export const refresh_token = async ()  => {
 
-    refresh_token = async () => this.defaultAxiosinstance.post('/api/v1/auth/refresh_token', {
-            refresh_token: await Helper.getRefreshToken()
-        }).then(async response => {
-            await Helper.setLoginInfoRefresh(response.data);
-            this.user_access_token = await response.data.access_token;
-            return {
-                state: true,
-            }
-        }).catch(error => {
-            if(error.response.status === 400) {
-                // 어떻게 할것 인가.
-            } else if(error.response.status === 500){
-                // 어떻게 할것 인가.
-            }
-
-        return {
-            state:false
+    const defaultAxiosinstance: AxiosInstance = axios.create({
+        baseURL: process.env.REACT_APP_API_URL,
+        timeout: 20000,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Request-Client-Type": "A01001",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization" : "Bearer " + Helper.getAccessToken(),
         }
     });
 
+    await defaultAxiosinstance.post('/api/v1/auth/refresh_token', {
+        refresh_token: await Helper.getRefreshToken()
+    }).then(async response => {
+        await Helper.setLoginInfoRefresh(response.data);
+        return true;
+    }).catch(error => {
+        console.debug(error);
+        return false;
+    });
 
-    init = async (auth: boolean, method : string, url: string, params: object): Promise<defaultServerResponse> => {
+    return true;
+}
 
-        if(auth) {
-            await Promise.all([this.refresh_token()]).then(function (e) {
-                const _first = e[0];
-                if(_first.state === false) {
-                    Helper.removeLoginInfo();
-                    GlobalAlert.default({
-                        text: '다시 로그인해 주세요.',
-                    });
-                    history.push('/joojang.front.admin/login');
-                } else {
-                    // Helper.setLoginInfoRefresh(refresh_token.data)
-                }
-            });
-       }
-
-        const axiosinstance: AxiosInstance = axios.create({
-            baseURL: process.env.REACT_APP_API_URL,
-            timeout: 20000,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Request-Client-Type": "A01001",
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization" : "Bearer " + Helper.getAccessToken(),
-            }
-        });
-
-        switch(method) {
-            case 'get': {
-                return this.promise<defaultServerResponse>(axiosinstance.get(url, params));
-            }
-            case 'post': {
-                return this.promise<defaultServerResponse>(axiosinstance.post(url, params));
-            }
-            case 'put': {
-                return this.promise<defaultServerResponse>(axiosinstance.put(url, params));
-            }
-            case 'delete': {
-                return this.promise<defaultServerResponse>(axiosinstance.delete(url, params));
-            }
-            default:
-                return this.error("Should never get here");
-        }
-    };
+const error = (message: string): never => {
+    throw new Error(message);
 };
 
-export default new GlobalAxios();
+export const start = async ( {authType, method, endpoint, payload}: apiRequest) => {
+    if(authType) {
+        await refresh_token();
+    }
+    const defaultAxiosinstance: AxiosInstance = axios.create({
+        baseURL: process.env.REACT_APP_API_URL,
+        timeout: 20000,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Request-Client-Type": "A01001",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization" : "Bearer " + Helper.getAccessToken(),
+        }
+    });
+
+    switch(method) {
+        case 'get': {
+            return promise<defaultServerResponse>(defaultAxiosinstance.get(endpoint, payload));
+        }
+        case 'post': {
+            return promise<defaultServerResponse>(defaultAxiosinstance.post(endpoint, payload));
+        }
+        case 'put': {
+            return promise<defaultServerResponse>(defaultAxiosinstance.put(endpoint, payload));
+        }
+        case 'delete': {
+            return promise<defaultServerResponse>(defaultAxiosinstance.delete(endpoint, payload));
+        }
+        default:
+            return error("Should never get here");
+    }
+}

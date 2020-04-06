@@ -78,22 +78,22 @@ const Root = ({
     return (
             <Router history={ Routerhistory }>
                 <Switch>
-                    <Route path="/" exact={ true } component={ UsersPage } />
-                    <Route path="/blank" exact={ true } component={ BlankPage } />
+                    <Route path={process.env.PUBLIC_URL + "/"} exact={ true } component={ UsersPage } />
+                    <Route path={process.env.PUBLIC_URL + "/blank"} exact={ true } component={ BlankPage } />
 
-                    <Route path="/login" exact={ true } component={ LoginPage } />
-                    <Route path="/book/create" exact={ true } component={ BookCreatePage } />
+                    <Route path={process.env.PUBLIC_URL + "/login"} exact={ true } component={ LoginPage } />
+                    <Route path={process.env.PUBLIC_URL + "/book/create"} exact={ true } component={ BookCreatePage } />
 
-                    <Route path="/users/:page_number" exact={ true } component={ UsersPage } />
-                    <Route path="/books/:page_number" exact={ true } component={ BooksListPage } />
-                    <Route path="/books/activity/:gugun/:page_number" exact={ true } component={ BookActivityListPage } />
-                    <Route path="/books/recommend/:gubun/:page_number" exact={ true } component={ RecommendBooksListPage } />
-                    <Route path="/user/:user_uuid/detail" exact={ true } component={ UserDetail } />
-                    <Route path="/user/:user_uuid/info" exact={ true } component={ UserInfoPage } />
+                    <Route path={process.env.PUBLIC_URL + "/users/:page_number"} exact={ true } component={ UsersPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/:page_number"} exact={ true } component={ BooksListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/activity/:gugun/:page_number"} exact={ true } component={ BookActivityListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/books/recommend/:gubun/:page_number"} exact={ true } component={ RecommendBooksListPage } />
+                    <Route path={process.env.PUBLIC_URL + "/user/:user_uuid/detail"} exact={ true } component={ UserDetail } />
+                    <Route path={process.env.PUBLIC_URL + "/user/:user_uuid/info"} exact={ true } component={ UserInfoPage } />
 
 
-                    <Route path="/test" exact={ true } component={ TestPage } />
-                    <Redirect path="*" to="/login" />
+                    <Route path={process.env.PUBLIC_URL + "/test"} exact={ true } component={ TestPage } />
+                    <Redirect path="*" to={process.env.PUBLIC_URL + "/login"} />
                 </Switch>
             </Router>
         );

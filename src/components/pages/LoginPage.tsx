@@ -42,7 +42,7 @@ function LoginPage() {
 
     useEffect(() => {
         if(Helper.getAccessToken()) {
-            history.push('/joojang.front.admin/');
+            history.push('/');
         }
     });
 

@@ -42,16 +42,16 @@ export default function useUserPage() {
         // dispatch(attemptGetUserInfoAction({
         //     user_uuid: user_uuid
         // }));
-        history.push(`/joojang.front.admin/user/${user_uuid}/info`);
+        history.push(`/user/${user_uuid}/info`);
     }
 
     const __handleClickUserInfoPage = (user_uuid : string) => {
-       history.push(`/joojang.front.admin/user/${user_uuid}/detail`);
+       history.push(`/user/${user_uuid}/detail`);
     }
 
     const __handlePaginate = (e: any) => {
         const selected_page = e.selected + 1;
-        history.push(`/joojang.front.admin/users/${selected_page}`);
+        history.push(`/users/${selected_page}`);
     }
 
     const __handleUserActiveUpdateLink = (user_uuid: string, active: 'Y' | 'N') => {

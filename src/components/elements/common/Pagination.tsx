@@ -39,7 +39,7 @@ function Pagination({
                                 previousLabel={'<'}
                                 nextLabel={'>'}
                                 breakLabel={'...'}
-                                pageCount={Number(listpagedata.next_page)}
+                                pageCount={Number(listpagedata.last_page)}
                                 marginPagesDisplayed={2}
                                 pageRangeDisplayed={5}
                                 onPageChange={handlePaginate}

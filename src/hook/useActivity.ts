@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
 import { attemptGetBookActivityListAction, attemptDeleteBookActivityAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
+import history from 'routes/History';
 import { useParams } from 'react-router-dom';
 
 interface RouteParams {
@@ -39,8 +40,9 @@ export default function useBookCreate() {
         }));
     }
 
-    const __handlePaginate = () => {
-        console.debug('::: __handlePaginate :::');
+    const __handlePaginate = (e: any) => {
+        const selected_page = e.selected + 1;
+        history.push(process.env.PUBLIC_URL + `/books/activity/${params.gubun}/${selected_page}`);
     }
 
     useEffect(() => {
@@ -79,6 +81,14 @@ export default function useBookCreate() {
         }));
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, []);
+
+    useEffect(() => {
+        dispatch(attemptGetBookActivityListAction({
+            pageNumber: (params.page_number) ? params.page_number : '1',
+            gubun: (params.gubun) ? params.gubun : 'C11110'
+        }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
+    }, [params]);
 
 
     useEffect(() => {

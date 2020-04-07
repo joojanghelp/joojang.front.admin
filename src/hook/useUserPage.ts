@@ -101,9 +101,6 @@ export default function useUserPage() {
     }, [params]);
 
     useEffect(() => {
-    }, [listPageData]);
-
-    useEffect(() => {
         if(state_user_active_update.state === "success") {
             dispatch(attemptGetUserListAction({
                 pageNumber: (params.page_number) ? params.page_number : '1'

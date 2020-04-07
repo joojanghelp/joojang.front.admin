@@ -5,6 +5,7 @@ import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteR
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import history from 'routes/History';
 
 interface RouteParams {
     page_number: string;
@@ -36,8 +37,9 @@ export default function useBooksList() {
 
     const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
-    const __handlePaginate = () => {
-        console.debug('::: __handlePaginate :::');
+    const __handlePaginate = (e: any) => {
+        const selected_page = e.selected + 1;
+        history.push(process.env.PUBLIC_URL + `/books/${selected_page}`);
     }
 
     const __handleClickRecommendAddButton = async (book_id: number) => {
@@ -111,8 +113,11 @@ export default function useBooksList() {
     }, [state_add_recommend_book, state_delete_recommend_book])
 
     useEffect(() => {
-        // console.debug(listPageData);
-    }, [listPageData]);
+        dispatch(attemptGetBooksListAction({
+            pageNumber: (params.page_number) ? params.page_number : '1'
+        }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
+    }, [params]);
 
     useEffect(() => {
         async function loadingState() {

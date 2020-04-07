@@ -4,6 +4,7 @@ import { RootState } from 'modules/redux';
 import {attemptRecommendBookListAction, attemptDeleteRecommendBookAction } from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
+import history from 'routes/History';
 
 interface RouteParams {
     page_number: string;
@@ -33,8 +34,9 @@ export default function useRecommendBooksList() {
 
     const [isLoading, setIsLoading] = useState<Interfaces.baseSagaStateType>('idle');
 
-    const __handlePaginate = () => {
-        console.debug('__handlePaginate');
+    const __handlePaginate = (e: any) => {
+        const selected_page = e.selected + 1;
+        history.push(process.env.PUBLIC_URL + `/books/activity/${params.gubun}/${selected_page}`);
     }
 
     const __handleClickDeleteButton = (book_id: number) => {
@@ -50,6 +52,14 @@ export default function useRecommendBooksList() {
         }));
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, []);
+
+    useEffect(() => {
+        dispatch(attemptRecommendBookListAction({
+            pageNumber: (params.page_number) ? params.page_number : '1',
+            gubun: (params.gubun) ? params.gubun : 'B11000'
+        }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
+    }, [params]);
 
     useEffect(() => {
         if(state_book_list.state === 'success' && typeof state_book_list.list !== undefined && state_book_list.list) {

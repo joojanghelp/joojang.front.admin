@@ -218,6 +218,17 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
             },
         };
     },
+    [ActionType.BOOK_CREATE_RESET](state: PageState) {
+        return {
+            ...state,
+            books: {
+                ...state.books,
+                book_create: {
+                    state: 'idle',
+                }
+            },
+        };
+    },
     [ActionType.GET_BOOKS_LIST_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,

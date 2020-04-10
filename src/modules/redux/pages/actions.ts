@@ -49,6 +49,12 @@ export const attemptBookCreateAction = (payload: Interfaces.bookCreateRequest) =
     };
 }
 
+export const attemptBookCreateResetAction = () => {
+    return {
+        type: ActionType.BOOK_CREATE_RESET
+    };
+}
+
 export const attemptRecommendBookListAction = (payload: Interfaces.getRecommendRequest) => {
     return {
         type: ActionType.GET_RECOMMEND_BOOKS_LIST_REQUEST,

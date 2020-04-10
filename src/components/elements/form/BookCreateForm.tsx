@@ -9,7 +9,7 @@ interface initialProps  {
 
 function BookCreateForm({bookSearchString, handleBookSearchButtonClick, handleBookSearchInputCange, handleEnterKeyPress} : initialProps) {
     const onEnter = (event: KeyboardEvent<HTMLInputElement>) => {
-        event.preventDefault();
+        // event.preventDefault();
         event.key === 'Enter' && handleEnterKeyPress();
     }
 

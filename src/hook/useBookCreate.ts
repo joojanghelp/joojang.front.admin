@@ -1,7 +1,7 @@
 import { useState, useEffect, MouseEvent} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import { attemptBookCreateAction } from 'modules/redux/pages';
+import { attemptBookCreateAction, attemptBookCreateResetAction} from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import GlobalAlert from 'lib/GlobalAlert';
 import * as API from 'lib/API';
@@ -87,9 +87,11 @@ export default function useBookCreate() {
         if(state_books.book_create.state === 'success') {
             GlobalAlert.thenHistoryPush({
                 text: '등록 처리 되었습니다.',
-                push_router: '/'
+                push_router: '/books/1'
             });
+            dispatch(attemptBookCreateResetAction());
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_books.book_create.state])
 
     return {

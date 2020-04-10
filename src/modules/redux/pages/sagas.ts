@@ -52,6 +52,10 @@ export function* bookCreateActionSaga({ payload }: { payload: Interfaces.bookCre
     }
 }
 
+export function* bookCreateResetActionSaga() {
+    yield put({type:ActionType.BOOK_CREATE_RESET});
+}
+
 export function* getBookListActionSaga({ payload }: { payload: Interfaces.getPageingListRequest }) {
     const response = yield call(API.attemptGetBookListRequest, payload);
     if(response.state === true) {

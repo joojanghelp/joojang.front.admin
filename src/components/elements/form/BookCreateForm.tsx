@@ -22,7 +22,7 @@ function BookCreateForm({bookSearchString, handleBookSearchButtonClick, handleBo
                         <div className="text-center">
                             <h1 className="h4 text-gray-900 mb-4">책검색</h1>
                         </div>
-                        <form className="user">
+                        <form className="user" onSubmit={e => { e.preventDefault(); }}>
                             <div className="form-group">
                                 <input type="text" className="form-control form-control-user" id="exampleInputEmail" placeholder="검색어를 입력해 주세요."
                                     onChange={ e => handleBookSearchInputCange(e.target.value) }

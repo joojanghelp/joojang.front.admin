@@ -39,7 +39,6 @@ const promise = <T>(axiosPromise: AxiosPromise): Promise<T> => {
         })
         .catch(error => {
             if (error.response) {
-
                 if(error.response.status === 401 || error.response.status === 403) {
                     Helper.removeLoginInfo();
                     GlobalAlert.default({
@@ -106,7 +105,7 @@ const error = (message: string): never => {
 
 export const start = async ( {authType, method, endpoint, payload}: apiRequest) => {
     if(authType) {
-        await refresh_token();
+        // await refresh_token();
     }
     const defaultAxiosinstance: AxiosInstance = axios.create({
         baseURL: process.env.REACT_APP_API_URL,

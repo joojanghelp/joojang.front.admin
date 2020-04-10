@@ -330,6 +330,17 @@ export const pagesActionReducer = createReducer<PageState>(initialState, {
             }
         };
     },
+    [ActionType.DELETE_RECOMMEND_BOOKS_RESET](state: PageState) {
+        return {
+            ...state,
+            books: {
+                ...state.books,
+                delete_recommend_book : {
+                    state: 'idle'
+                },
+            }
+        };
+    },
     [ActionType.ADD_RECOMMEND_BOOKS_REQUEST](state: PageState, action: Action<Interfaces.defaultServerResponse>) {
         return {
             ...state,

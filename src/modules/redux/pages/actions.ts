@@ -76,6 +76,12 @@ export const attemptDeleteRecommendBookAction = (payload: Interfaces.deleteRecom
     };
 }
 
+export const attemptDeleteRecommendBookResetAction = () => {
+    return {
+        type: ActionType.DELETE_RECOMMEND_BOOKS_RESET
+    };
+}
+
 export const attemptGetBookActivityListAction = (payload: Interfaces.getGubunPageingListRequest) => {
     return {
         type: ActionType.GET_BOOKS_ACTIVITY_LIST_REQUEST,

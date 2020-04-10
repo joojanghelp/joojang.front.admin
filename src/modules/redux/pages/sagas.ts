@@ -93,6 +93,10 @@ export function* recommendBookDeleteActionSaga({ payload }: { payload: Interface
     }
 }
 
+export function* recommendBookDeleteResetActionSaga() {
+    yield put({type:ActionType.DELETE_RECOMMEND_BOOKS_RESET});
+}
+
 
 
 export function* getBookActivityListActionSaga({ payload }: { payload: Interfaces.getGubunPageingListRequest }) {
@@ -124,6 +128,7 @@ function* onPagesRequestWatcher() {
     yield takeLatest(ActionType.GET_RECOMMEND_BOOKS_LIST_REQUEST as any, getRecommendBookListActionSaga);
     yield takeLatest(ActionType.ADD_RECOMMEND_BOOKS_REQUEST as any, recommendBookAddActionSaga);
     yield takeLatest(ActionType.DELETE_RECOMMEND_BOOKS_REQUEST as any, recommendBookDeleteActionSaga);
+    yield takeLatest(ActionType.DELETE_RECOMMEND_BOOKS_RESET as any, recommendBookDeleteResetActionSaga);
     yield takeLatest(ActionType.GET_BOOKS_ACTIVITY_LIST_REQUEST as any, getBookActivityListActionSaga);
     yield takeLatest(ActionType.DELETE_BOOKS_ACTIVITY_LIST_REQUEST as any, deleteBookActivityActionSaga);
 

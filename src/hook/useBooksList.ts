@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteRecommendBookAction} from 'modules/redux/pages';
+import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteRecommendBookAction, attemptDeleteRecommendBookResetAction} from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -109,6 +109,7 @@ export default function useBooksList() {
                 pageNumber: (params.page_number) ? params.page_number : '1'
             }));
         }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps,
     }, [state_add_recommend_book, state_delete_recommend_book])
 
@@ -127,14 +128,47 @@ export default function useBooksList() {
         async function idleState() {
             await setIsLoading('idle');
         }
-
-        if(state_book_list.state === 'loading' || state_add_recommend_book.state === 'loading' || state_delete_recommend_book.state === 'loading') {
+        if(state_book_list.state === 'loading') {
             loadingState()
         } else {
             idleState();
         }
 
-    } ,[state_book_list.state, state_add_recommend_book.state, state_delete_recommend_book.state])
+    } ,[state_book_list.state])
+
+
+    useEffect(() => {
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+        if(state_add_recommend_book.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_add_recommend_book.state])
+
+
+    useEffect(() => {
+        async function loadingState() {
+            await setIsLoading('loading');
+        }
+
+        async function idleState() {
+            await setIsLoading('idle');
+        }
+        if(state_delete_recommend_book.state === 'loading') {
+            loadingState()
+        } else {
+            idleState();
+        }
+
+    } ,[state_delete_recommend_book.state])
 
     return {
         booksListItems,

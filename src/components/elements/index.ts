@@ -10,8 +10,10 @@ export { default as DefaultUserListTable } from './table/DefaultUserListTable';
 export { default as BookSearchListTable } from './table/BookSearchListTable';
 export { default as BooksListTable } from './table/BooksListTable';
 export { default as RecommendBooksListTable } from './table/RecommendBooksListTable';
+export { default as RecommendBookListThumbnailType } from './table/RecommendBookListThumbnailType';
 export { default as BooksActivityListTable } from './table/BooksActivityListTable';
 export { default as UserInfoTable } from './table/UserInfoTable';
+export { default as BookListThumbnailType } from './table/BookListThumbnailType';
 
 
 export { default as Sidebar } from './common/Sidebar';
@@ -28,3 +30,5 @@ export { default as Pagination } from './common/Pagination';
 export { default as ListSkeletonComponent } from './ListSkeletonComponent';
 export { default as InfoSkeletonComponent } from './InfoSkeletonComponent';
 export { default as SearchSkeletonComponent } from './SearchSkeletonComponent';
+
+export { default as ImageComponent } from './etc/ImageComponent';

@@ -2,6 +2,7 @@ import React from 'react';
 import {
     ListSkeletonComponent,
     BooksListTable,
+    BookListThumbnailType,
     Pagination
 } from 'components/elements';
 import useBooksList from 'hook/useBooksList';
@@ -21,7 +22,7 @@ function BooksListPage() {
         <>
             <ListSkeletonComponent
                 ListTable={
-                    <BooksListTable
+                    <BookListThumbnailType
                         isloading={isLoading}
                         items={booksListItems}
                         handleClickRecommendAddButton={__handleClickRecommendAddButton}

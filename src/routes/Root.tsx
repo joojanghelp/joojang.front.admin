@@ -21,7 +21,7 @@ import {LoadingSpinner} from 'components/elements';
 
 import { RootState } from 'modules/redux';
 import { getRootDataAction } from 'modules/redux/sitedatas';
-
+import GlobalStyle from 'styles/global';
 
 interface RootProps  {
     Routerhistory: any
@@ -77,6 +77,7 @@ const Root = ({
 
     return (
             <Router history={ Routerhistory }>
+                <GlobalStyle/>
                 <Switch>
                     <Route path={process.env.PUBLIC_URL + "/"} exact={ true } component={ UsersPage } />
                     <Route path={process.env.PUBLIC_URL + "/blank"} exact={ true } component={ BlankPage } />

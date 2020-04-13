@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Interfaces from 'modules/Interfaces';
-import {LoadingSpinner} from 'components/elements';
+import {LoadingSpinner, ImageComponent} from 'components/elements';
 
 interface initialProps {
     isloading: Interfaces.baseSagaStateType;
@@ -26,17 +26,6 @@ function BooksListTable({ isloading, items, handleClickRecommendAddButton, handl
                         <th>authors</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>추천등록</th>
-                        <th>thumbnail</th>
-                        <th>title</th>
-                        <th>status</th>
-                        <th>isbn</th>
-                        <th>contents</th>
-                        <th>authors</th>
-                    </tr>
-                </tfoot>
                 {isloading === 'loading'
                     ?
                     <tbody><tr><td colSpan={10}><div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div></td></tr></tbody>
@@ -50,13 +39,13 @@ function BooksListTable({ isloading, items, handleClickRecommendAddButton, handl
                                 (function(){
                                     switch(item.recommend) {
                                         case true :
-                                            return <td><button type="button" className="btn btn-danger" onClick={() => handleClickRecommendDeleteButton(item.id)}>삭제</button></td>
+                                            return <td><button type="button" className="btn btn-danger btn-sm" onClick={() => handleClickRecommendDeleteButton(item.id)}>삭제</button></td>
                                         case false :
-                                            return <td><button type="button" className="btn btn-primary" onClick={() => handleClickRecommendAddButton(item.id)}>등록</button></td>
+                                            return <td><button type="button" className="btn btn-primary btn-sm" onClick={() => handleClickRecommendAddButton(item.id)}>등록</button></td>
                                     }
                                 })()
                             }
-                            <td>{item.thumbnail && <img src={item.thumbnail} alt="thumbnail" />}</td>
+                            <td><ImageComponent image_url={item.thumbnail}/></td>
                             <td>{item.title}</td>
                             <td>{item.user_name}</td>
                             <td>{item.isbn}</td>

@@ -7,6 +7,7 @@ import configureStore from 'modules/configureStore'
 
 import Root from './routes/Root';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import "assets/css/sb-admin-2.css";
 
 

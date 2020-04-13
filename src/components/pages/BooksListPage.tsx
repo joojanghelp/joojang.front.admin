@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     ListSkeletonComponent,
-    BooksListTable,
     BookListThumbnailType,
     Pagination
 } from 'components/elements';

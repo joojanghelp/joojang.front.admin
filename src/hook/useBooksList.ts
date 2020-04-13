@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/redux';
-import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteRecommendBookAction, attemptDeleteRecommendBookResetAction} from 'modules/redux/pages';
+import {attemptGetBooksListAction, attemptAddRecommendBookAction, attemptDeleteRecommendBookAction} from 'modules/redux/pages';
 import * as Interfaces from 'modules/Interfaces';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';

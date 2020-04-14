@@ -60,7 +60,7 @@ class GlobalAlert {
         var timerInterval: any;
         this.SwalAlert.fire({
             title: '잠시만 기다려 주세요.',
-            html: '토큰 갱신 중입니다. 반복시 새로고침 해주세요.',
+            html: '토큰 갱신 중입니다. <br>반응이 없으면 다시 눌러 주세요.',
             timer: 2000,
             timerProgressBar: true,
             onBeforeOpen: () => {

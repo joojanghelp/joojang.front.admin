@@ -48,7 +48,6 @@ const Root = ({
 
     // TODO: 소스 정리 필요.
     useEffect(() => {
-        setIsLoading(true);
         if(!Helper.getAccessToken()) {
             setIsLoading(false);
             if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
@@ -62,10 +61,22 @@ const Root = ({
 
 
       useEffect(() => {
-          if(sitedata_state === 'success') {
+        //   if(sitedata_state === 'success') {
             setIsLoading(false);
-          }
+        //   }
+
       }, [sitedata_state])
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      useEffect(() => {
+        if(!Helper.getAccessToken()) {
+            setIsLoading(false);
+            if(router_state.location.pathname !== process.env.PUBLIC_URL + '/login') {
+                history.push(process.env.PUBLIC_URL + '/login');
+            }
+        }
+      });
+
 
     if(isLoading) {
         return (

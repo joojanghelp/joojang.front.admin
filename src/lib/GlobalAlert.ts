@@ -56,6 +56,36 @@ class GlobalAlert {
         });
     };
 
+    defaultTimerInterval = (): void => {
+        var timerInterval: any;
+        this.SwalAlert.fire({
+            title: '잠시만 기다려 주세요.',
+            html: '토큰 갱신 중입니다. 반복시 새로고침 해주세요.',
+            timer: 2000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+              Swal.showLoading()
+              timerInterval = setInterval(() => {
+                const content = Swal.getContent()
+                if (content) {
+                  const b: any = content.querySelector('b')
+                  if (b) {
+                    b.textContent = Swal.getTimerLeft()
+                  }
+                }
+              }, 100)
+            },
+            onClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result: any) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
+    };
+
 
     error = (alertOption: alertTypeInterface): void => {
         this.SwalAlert.fire({

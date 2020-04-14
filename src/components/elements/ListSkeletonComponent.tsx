@@ -25,12 +25,12 @@ function ListSkeletonComponent(props: any) {
                         <div className="container-fluid">
 
                             {/* <!-- Page Heading --> */}
-                            <h1 className="h3 mb-2 text-gray-800">회원</h1>
+                            <h1 className="h3 mb-2 text-gray-800">{props.pageTitle}</h1>
                             <p className="mb-4"></p>
 
                             <div className="card shadow mb-4">
                                 <div className="card-header py-3">
-                                    <h6 className="m-0 font-weight-bold text-primary">회원 리스트</h6>
+                                    <h6 className="m-0 font-weight-bold text-primary">{props.pageSubTitle}</h6>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">

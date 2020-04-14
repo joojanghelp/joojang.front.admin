@@ -19,6 +19,10 @@ function BookActivityListPage() {
     return (
         <>
             <ListSkeletonComponent
+
+                pageTitle={'회원'}
+                pageSubTitle={'독서 활동 리스트'}
+
                 ListTable={
                     <BooksActivityListTable
                         isloading={isLoading}

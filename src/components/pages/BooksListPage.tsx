@@ -20,6 +20,9 @@ function BooksListPage() {
     return (
         <>
             <ListSkeletonComponent
+                pageTitle={'책'}
+                pageSubTitle={'책 리스트'}
+
                 ListTable={
                     <BookListThumbnailType
                         isloading={isLoading}

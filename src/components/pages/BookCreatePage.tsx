@@ -17,6 +17,10 @@ function BookCreatePage() {
     return (
         <>
             <SearchSkeletonComponent
+
+                pageTitle={'책'}
+                pageSubTitle={'책 등록'}
+
                 SearchTable={
                     <>
                         <BookCreateForm

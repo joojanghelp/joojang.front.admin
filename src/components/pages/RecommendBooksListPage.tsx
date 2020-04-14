@@ -20,6 +20,9 @@ function RecommendBooksListPage() {
         <>
             <ListSkeletonComponent
 
+                pageTitle={'책'}
+                pageSubTitle={'추천 도서'}
+
                 ListTable={
                     <RecommendBookListThumbnailType
                         isloading={isLoading}

@@ -22,6 +22,10 @@ function UsersPage() {
     return (
         <>
             <ListSkeletonComponent
+
+                pageTitle={'회원'}
+                pageSubTitle={'회원 리스트'}
+
                 ListTable={
                     <DefaultUserListTable
                         isloading={isLoading}

@@ -32,45 +32,44 @@ const BookCard = styled.div`
 function BookListThumbnailType({ isloading, items, handleClickRecommendAddButton, handleClickRecommendDeleteButton }: initialProps) {
     return (
         <>
-            <div className="container">
 
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
                     {isloading === 'loading'
                     ?
-                        <div className="card">
-                            <div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div>
-                        </div>
+                    <div className="card">
+                    <div style={{ height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center',}}><LoadingSpinner /></div>
+                </div>
                     :
                     <>
-                    {items && items.map((item: Interfaces.bookListItem, i:number) =>
+                        <div className="container">
+                            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
+                                {items && items.map((item: Interfaces.bookListItem, i:number) =>
 
-                            <div className="col mb-4">
-                                <BookCard>
-                                    <div className="card-text text-center"><ImageComponent image_url={item.thumbnail}/></div>
-                                    <div className="card-body">
-                                        <BookTitle>{item.title}</BookTitle>
-                                    </div>
-                                    {
-                                (function(){
-                                    switch(item.recommend) {
-                                        case true :
-                                            return <button type="button" className="btn btn-danger btn-sm" onClick={() => handleClickRecommendDeleteButton(item.id)}>추천도서 삭제</button>
-                                        case false :
-                                            return <button type="button" className="btn btn-primary btn-sm" onClick={() => handleClickRecommendAddButton(item.id)}>추천도서 등록</button>
-                                    }
-                                })()
-                            }
-                                </BookCard>
+                                        <div className="col mb-4" key={i}>
+                                            <BookCard>
+                                                <div className="card-text text-center"><ImageComponent image_url={item.thumbnail}/></div>
+                                                <div className="card-body">
+                                                    <BookTitle>{item.title}</BookTitle>
+                                                </div>
+                                                {
+                                            (function(){
+                                                switch(item.recommend) {
+                                                    case true :
+                                                        return <button type="button" className="btn btn-danger btn-sm" onClick={() => handleClickRecommendDeleteButton(item.id)}>추천도서 삭제</button>
+                                                    case false :
+                                                        return <button type="button" className="btn btn-primary btn-sm" onClick={() => handleClickRecommendAddButton(item.id)}>추천도서 등록</button>
+                                                }
+                                            })()
+                                        }
+                                            </BookCard>
+                                        </div>
+
+                                    )
+                                }
                             </div>
-
-                        )
-                    }
+                        </div>
                     </>
                 }
 
-
-                </div>
-            </div>
         </>
     );
 }

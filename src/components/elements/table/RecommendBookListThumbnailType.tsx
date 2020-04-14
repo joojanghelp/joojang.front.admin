@@ -31,9 +31,7 @@ const BookCard = styled.div`
 function RecommendBookListThumbnailType({ isloading,items, handleClickDeleteButton }: initialProps) {
     return (
         <>
-            <div className="container">
 
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
                     {isloading === 'loading'
                     ?
                         <div className="card">
@@ -41,9 +39,12 @@ function RecommendBookListThumbnailType({ isloading,items, handleClickDeleteButt
                         </div>
                     :
                     <>
+                    <div className="container">
+
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
                     {items && items.map((item: Interfaces.RecommendbookListItem, i:number) =>
 
-                            <div className="col mb-4">
+                            <div className="col mb-4" key={i}>
                                 <BookCard>
                                     <div className="card-text text-center"><ImageComponent image_url={item.book_thumbnail}/></div>
                                     <div className="card-body">
@@ -54,10 +55,11 @@ function RecommendBookListThumbnailType({ isloading,items, handleClickDeleteButt
                             </div>
                         )
                     }
-                    </>
-                }
+
+                    </div>
                 </div>
-            </div>
+                </>
+                }
         </>
     );
 }

@@ -67,6 +67,7 @@ const Root = ({
 
       }, [sitedata_state])
 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       useEffect(() => {
         if(!Helper.getAccessToken()) {
             setIsLoading(false);

@@ -2,7 +2,6 @@ import axios,{
     // AxiosResponse
 } from "axios";
 import * as Helper from 'lib/Helper';
-import History from 'routes/History';
 import GlobalAlert from 'lib/GlobalAlert';
 // import _ from 'lodash';
 
@@ -58,7 +57,7 @@ authAxios.interceptors.request.use( config => {
             Helper.setLoginInfoRefresh(response.data);
             resolve(response)
         }).catch((error) => {
-            GlobalAlert.default({text:'죄송합니다 버그 입니다 잠시만 기다려 주세요.n 반복되면 새로고침 해주세요.'})
+            GlobalAlert.defaultTimerInterval()
             Helper.removeLoginInfo();
             // History.push(process.env.PUBLIC_URL + '/login')
             return reject({
